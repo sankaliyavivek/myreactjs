@@ -26,7 +26,7 @@ router.post("/save-tokens", Authentication, async (req, res) => {
                 googleAccessToken: access_token, 
                 googleRefreshToken: refresh_token || null,
                 googleConnected: true,
-                googleCalendarEnabled: true, // ✅ Ensure this is updated
+                googleCalendarEnabled: true, //  Ensure this is updated
             },
             { new: true }
         );
@@ -93,7 +93,7 @@ router.get("/status", Authentication, async (req, res) => {
         const user = await User.findById(req.user.id);
         if (!user) return res.status(404).json({ error: "User not found" });
 
-        console.log("User Integration Status:", user.googleCalendarEnabled ?? false); // ✅ Safe logging
+        console.log("User Integration Status:", user.googleCalendarEnabled ?? false); //  Safe logging
 
         res.json({
             googleCalendar: Boolean(user.googleCalendarEnabled),

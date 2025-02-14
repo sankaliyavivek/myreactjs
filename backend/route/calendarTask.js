@@ -11,7 +11,7 @@ const {
 
 const router = express.Router();
 
-// ✅ GET All Tasks
+//  GET All Tasks
 router.get("/googletaskget", Authentication, async (req, res) => {
     try {
         if (!req.user || !req.user.id) {
@@ -43,7 +43,7 @@ router.get("/googletaskget/:taskId", Authentication, async (req, res) => {
     }
 });
 
-// ✅ Create Task & Sync with Google Calendar (Prevent if Google is not connected)
+//  Create Task & Sync with Google Calendar (Prevent if Google is not connected)
 router.post("/create", Authentication, async (req, res) => {
     try {
         const { title, description, dueDate } = req.body;
@@ -56,13 +56,13 @@ router.post("/create", Authentication, async (req, res) => {
             return res.status(400).json({ error: "Title and Due Date are required" });
         }
 
-        // ✅ Check if Google is connected
+        //  Check if Google is connected
         const user = await User.findById(userId);
         if (!user || !user.googleAccessToken) {
             return res.status(403).json({ error: "Google account not connected. Please connect your Google account first." });
         }
 
-        // ✅ Save task in database
+        //  Save task in database
         const newTask = new CalendarTask({ userId, title, description, dueDate });
         await newTask.save();
 
@@ -82,7 +82,7 @@ router.post("/create", Authentication, async (req, res) => {
     }
 });
 
-// ✅ Update Task & Sync with Google Calendar
+//  Update Task & Sync with Google Calendar
 router.put("/update/:taskId", Authentication, async (req, res) => {
     try {
         const { taskId } = req.params;
@@ -117,7 +117,7 @@ router.put("/update/:taskId", Authentication, async (req, res) => {
     }
 });
 
-// ✅ Delete Task & Remove from Google Calendar
+//  Delete Task & Remove from Google Calendar
 router.delete("/delete/:taskId", Authentication, async (req, res) => {
     try {
         const { taskId } = req.params;
@@ -168,7 +168,7 @@ router.post("/google-webhook", async (req, res) => {
             const task = await CalendarTask.findOne({ googleEventId: event.id });
 
             if (!task && event.status === "confirmed") {
-                // ✅ Create missing task in DB
+                //  Create missing task in DB
                 const newTask = new CalendarTask({
                     userId: req.user.id,
                     title: event.summary,
@@ -178,10 +178,10 @@ router.post("/google-webhook", async (req, res) => {
                 });
                 await newTask.save();
             } else if (task && event.status === "cancelled") {
-                // ✅ Delete task from DB if deleted from Google
+                // Delete task from DB if deleted from Google
                 await CalendarTask.deleteOne({ googleEventId: event.id });
             } else if (task) {
-                // ✅ Update task if changed in Google Calendar
+                //  Update task if changed in Google Calendar
                 task.title = event.summary;
                 task.description = event.description || "";
                 task.dueDate = event.start.dateTime;

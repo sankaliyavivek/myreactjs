@@ -20,13 +20,7 @@ router.get('/task-statistics', async (req, res) => {
             return acc;
         }, {});
 
-        // Team productivity (assuming assigneeId is added to the schema)
-        // const productivity = tasks.reduce((acc, task) => {
-        //     if (task.assigneeId) {
-        //         acc[task.assigneeId] = (acc[task.assigneeId] || 0) + 1;
-        //     }
-        //     return acc;
-        // }, {});
+     
 
         res.json({
             taskCompletionRate: taskCompletionRate.toFixed(2),

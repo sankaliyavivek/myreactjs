@@ -4,13 +4,9 @@ import axios from 'axios';
 
 
 function Navbar() {
-
-  // console.log("name",name);
   const navigate = useNavigate();
   const name = localStorage.getItem('username')
-  // console.log(name)
   const role = localStorage.getItem('role')
-
   const handellogout = async () => {
     const data = await axios.post('http://localhost:8000/user/logout',{},{withCredentials:true});
     localStorage.removeItem('username');

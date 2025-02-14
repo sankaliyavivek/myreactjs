@@ -108,7 +108,7 @@ function Home() {
             // Remove duplicates
             const updatedAssignedUsers = [...new Set([...currentAssignedUsers, ...selectedUsers])];
 
-            // Send request to backend
+            // Send request to backend to for assignuser to project
             await axios.put(`http://localhost:8000/user/assignuser/${selectedProjectId}`,
                 { userIds: updatedAssignedUsers },
                 { withCredentials: true }

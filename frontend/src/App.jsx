@@ -23,8 +23,7 @@ function App() {
 
   return (
     <div className='hide'>
-
-
+      
       <Navbar></Navbar>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
@@ -34,24 +33,13 @@ function App() {
         <Route path='/alltask' element={<AllTask></AllTask>}></Route>
         <Route path='/newtask' element={<NewTask></NewTask>}>NewTask</Route>
         <Route path='/edit/:id' element={<Edit></Edit>}></Route>
-
         <Route path='/googlebutton' element={<GoogleButton></GoogleButton>}></Route>
-
-
         <Route path='/dashboard' element={<Dashboard></Dashboard>}></Route>
         <Route path='/useredit/:id' element={<UserEdit></UserEdit>}></Route>
-
-
         <Route path='/kanban' element={<KanbanList></KanbanList>}></Route>
         <Route path='/taskedit/:id' element={<TaskEdit></TaskEdit>}></Route>
-
         <Route path='/table' element={<TaskTable ></TaskTable>}></Route>
-
-
         <Route path='/taskform' element={<GoogleTaskForm></GoogleTaskForm>}></Route>
-
-
-
       </Routes>
 
     </div>

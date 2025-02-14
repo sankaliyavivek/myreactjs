@@ -1,6 +1,4 @@
 
-
-
 const { google } = require("googleapis");
 const User = require("../model/user");
 
@@ -106,7 +104,7 @@ const refreshAccessToken = async (userId) => {
         oauth2Client.setCredentials({ refresh_token: user.googleRefreshToken });
         const { credentials } = await oauth2Client.refreshAccessToken();
 
-        // ✅ Update user with new access token
+        //  Update user with new access token
         user.googleAccessToken = credentials.access_token;
         await user.save();
 

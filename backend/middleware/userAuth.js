@@ -30,7 +30,7 @@ const Authentication = async (req, res, next) => {
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET || 'mysecretkey');
 
-        // ✅ Fetch the user from DB
+        //  Fetch the user from DB
         const user = await User.findById(decoded.userId);
         if (!user) {
             return res.status(404).json({ error: "User not found. Please login again." });
@@ -59,12 +59,12 @@ const checkAdminRole = async (req, res, next) => {
             return res.status(404).json({ message: "User not found" });
         }
 
-        // ✅ Check if the **logged-in user** is an admin
+        //  Check if the **logged-in user** is an admin
         if (user.role !== 'admin') {
             return res.status(403).json({ message: "Forbidden: Only admin can perform this action" });
         }
 
-        // ✅ Admin verified, proceed to next middleware or route
+        //  Admin verified, proceed to next middleware or route
         next();
 
     } catch (error) {
@@ -89,7 +89,7 @@ const refreshGoogleToken = async (userId) => {
 
         const newAccessToken = response.data.access_token;
 
-        // ✅ Update user with the new access token
+        //  Update user with the new access token
         await User.findByIdAndUpdate(userId, { googleAccessToken: newAccessToken });
 
         return newAccessToken;

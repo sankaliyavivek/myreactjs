@@ -11,7 +11,7 @@ const oauth2Client = new google.auth.OAuth2(
     process.env.GOOGLE_REDIRECT_URI
 );
 
-// 🔄 Generate Google OAuth URL
+//  Generate Google OAuth URL 
 router.get("/google", Authentication, (req, res) => {
     const authUrl = oauth2Client.generateAuthUrl({
         access_type: "offline",
@@ -25,7 +25,7 @@ router.get("/google", Authentication, (req, res) => {
     res.json({ authUrl });
 });
 
-// 🔄 Google OAuth Callback
+//  Google OAuth Callback
 router.get("/google/callback", Authentication, async (req, res) => {
     try {
         const { code } = req.query;
@@ -33,14 +33,14 @@ router.get("/google/callback", Authentication, async (req, res) => {
             return res.status(400).json({ message: "Authorization code is missing" });
         }
 
-        console.log("🔄 Exchanging code for tokens...");
+        console.log(" Exchanging code for tokens...");
         const { tokens } = await oauth2Client.getToken(code);
         oauth2Client.setCredentials(tokens);
 
-        console.log("✅ OAuth Success: Tokens received", tokens);
+        console.log(" OAuth Success: Tokens received", tokens);
 
         if (!tokens.refresh_token) {
-            console.warn("⚠️ No refresh token received. Ensure `prompt: 'consent'` is used.");
+            console.warn(" No refresh token received. Ensure `prompt: 'consent'` is used.");
         }
 
         // Save tokens in the database
@@ -60,7 +60,7 @@ router.get("/google/callback", Authentication, async (req, res) => {
 
         return res.redirect("http://localhost:5173/dashboard");
     } catch (error) {
-        console.error("❌ OAuth Token Exchange Error:", error.response?.data || error.message || error);
+        console.error(" OAuth Token Exchange Error:", error.response?.data || error.message || error);
         return res.status(500).json({ message: "OAuth failed", error: error.message });
     }
 });
