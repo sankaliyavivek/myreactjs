@@ -42,7 +42,7 @@ function Home() {
             .catch((error) => setError(error.response?.data?.message || "Failed to fetch projects"));
 
         // Fetch users
-        axios.get('http://localhost:8000/user/alluser')
+        axios.get(`${API_BASE_URL}/user/alluser`)
             .then((response) => {
                 // console.log(response.data); // Check if data is correct
                 setUsers(response.data.allUser);
@@ -53,7 +53,7 @@ function Home() {
             });
 
             // show notifications
-        axios.get('http://localhost:8000/notification/get')
+        axios.get(`${API_BASE_URL}/notification/get`)
             .then(response => setNotifications(response.data.data || []))
             .catch(error => console.error("Error fetching notifications:", error));
 
@@ -91,7 +91,7 @@ function Home() {
     const removeNotification = async (id) => {
 
         try {
-            await axios.delete(`http://localhost:8000/notification/delete/${id}`, { withCredentials: true });
+            await axios.delete(`${API_BASE_URL}/notification/delete/${id}`, { withCredentials: true });
             setNotifications(notifications.filter(n => n._id !== id));
         } catch (error) {
             console.error('Error removing notification:', error);
@@ -100,7 +100,7 @@ function Home() {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:8000/project/delete/${id}`);
+            await axios.delete(`${API_BASE_URL}/project/delete/${id}`);
             setProjects(projects.filter(project => project._id !== id));
         } catch (error) {
             console.error("Error deleting project:", error);
@@ -123,7 +123,7 @@ function Home() {
             const updatedAssignedUsers = [...new Set([...currentAssignedUsers, ...selectedUsers])];
 
             // Send request to backend to for assignuser to project
-            await axios.put(`http://localhost:8000/user/assignuser/${selectedProjectId}`,
+            await axios.put(`${API_BASE_URL}/user/assignuser/${selectedProjectId}`,
                 { userIds: updatedAssignedUsers },
                 { withCredentials: true }
             );
@@ -145,7 +145,7 @@ function Home() {
             return;
         }
         try {
-            await axios.delete(`http://localhost:8000/user/removeuser/${projectId}/${userId}`, { withCredentials: true });
+            await axios.delete(`${API_BASE_URL}/user/removeuser/${projectId}/${userId}`, { withCredentials: true });
 
             // Update UI
             setProjects(prevProjects => prevProjects.map(project =>
