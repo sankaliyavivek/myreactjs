@@ -29,7 +29,7 @@ function Login() {
       localStorage.setItem('userId', data.data.user.id || response.data.user._id);
       localStorage.setItem('username', data.data.user.name);
       localStorage.setItem('role', data.data.user.role);
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("token", data.data.data.token);
       alert('login successfully');
       navigate('/');
 
