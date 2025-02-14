@@ -42,14 +42,15 @@
                 { expiresIn: '24h' } // Token expiration time
             )
             res.cookie("token", token, {
-                httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
-                secure: process.env.NODE_ENV === 'production', // Ensures cookie is sent only over HTTPS in production
-                sameSite: 'strict', // Protects against CSRF attacks
-                maxAge: 24 * 60 * 60 * 1000 // Sets cookie expiration (1 day in milliseconds)
-            });
+                httpOnly: true,
+                secure: false, // Change to `true` when using a custom domain with HTTPS
+                sameSite: 'None', // Important for cross-origin cookies
+                maxAge: 24 * 60 * 60 * 1000
+              });
+        
             res.json({
                 message: 'User login successfully',
-                token,
+               token,
                 user: {
                     id: user._id,
                     name: user.name,
