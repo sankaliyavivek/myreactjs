@@ -7,7 +7,12 @@ import io from 'socket.io-client';
 import ProjectStatsChart from '../StatisticsCharts/ProjectStatsChart';
 
 // Connect to the socket server
-const socket = io('http://localhost:8000'); // Backend URL
+// const socket = io('http://localhost:8000'); // Backend URL
+
+const socket = io("https://your-backend-service.onrender.com", {
+    transports: ["websocket", "polling"],
+    withCredentials: true,
+  });
 
 function Home() {
     const [projects, setProjects] = useState([]);

@@ -4,20 +4,35 @@ let io;  // Declare the io instance
 
 // Initialize Socket.IO with the HTTP server
 const initializeSocket = (server) => {
-  if (io) {
-    console.log('Socket.IO is already initialized');
-    return;
-  }
-
-  // Initialize Socket.IO
-  io = socketIo(server, {
+  io = require("socket.io")(server, {
     cors: {
-      origin: 'http://localhost:5173',  // Frontend origin
-      methods: ['GET', 'POST'],
-      allowedHeaders: ['Content-Type'],
+      origin: ["https://myreactjsproject.onrender.com"], // ✅ Allow frontend
+      methods: ["GET", "POST"],
       credentials: true,
     },
   });
+
+  // Initialize Socket.IO
+  // const socket = io("https://your-backend-service.onrender.com", {
+  //   transports: ["websocket", "polling"],
+  //   withCredentials: true,
+  // });
+  // io = socketIo(server, {
+  //   cors: {
+  //     origin: 'http://localhost:5173',  // Frontend origin
+  //     methods: ['GET', 'POST'],
+  //     allowedHeaders: ['Content-Type'],
+  //     credentials: true,
+  //   },
+  // });
+
+  // const io = require("socket.io")(server, {
+  //   cors: {
+  //     origin: ["https://myreactjsproject.onrender.com"], // ✅ Allow frontend
+  //     methods: ["GET", "POST"],
+  //     credentials: true,
+  //   },
+  // });
 
   console.log('Socket.IO initialized');
 

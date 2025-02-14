@@ -19,10 +19,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
-
-
-
 // Create HTTP server and initialize socket.io
 const httpServer = http.createServer(app);
 initializeSocket(httpServer); // Initialize socket server
@@ -43,7 +39,7 @@ app.use(cors({
 // sendDeadlineReminders();
 app.use(cookieParser());
 app.use(express.json());
-// 
+ 
 const router = require('./route/user');
 const project = require('./route/project');
 const task = require('./route/task');
@@ -51,20 +47,13 @@ const notification =require('./route/notification');
 const statistics = require('./route/projectstatistics')
 const taskstatistics = require('./route/taskstatistics');
 const googleAuthRoutes = require("./route/googleauth");
-// const integrationRoutes = require("./route/inegration");
-// const integrationRoutes = require("./route/integration"); // ✅ Correct spelling
 
-
-// const integrationRoutes = require("./route/integration"); // ✅ Correct file name
-// app.use("/api/integration", integrationRoutes)
 
 const integrationRoutes = require("./route/integration");
 app.use("/api/integration", integrationRoutes);
 
 const calendarTaskRoutes = require("./route/calendarTask");
 app.use("/api/calendar-task", calendarTaskRoutes);
-
-
 app.use('/user', router);
 app.use('/project', project);
 app.use('/task', task);
@@ -72,7 +61,7 @@ app.use('/notification',notification);
 app.use('/statistics',statistics);
 app.use('/statisticss', taskstatistics);
 app.use("/auth", googleAuthRoutes);
-// app.use("/api/integration", integrationRoutes); // ✅ Correct
+
 
 
 // Listen on the HTTP server
