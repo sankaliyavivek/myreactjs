@@ -10,7 +10,7 @@ function Login() {
   const navigate = useNavigate();
   const [name, setname] = useState('');
   console.log(name);
-  // const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
 
   const handlesubmite = async (e) => {
