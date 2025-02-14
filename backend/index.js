@@ -30,11 +30,14 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
 const port = 8000;
+const cors = require("cors");
 
 app.use(cors({
-  origin: 'http://localhost:5173',  // Frontend origin
-  credentials: true,
+  origin: ["https://myreactjsproject.onrender.com"], // Frontend URL
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
 }));
+
 
 // sendDeadlineReminders();
 app.use(cookieParser());

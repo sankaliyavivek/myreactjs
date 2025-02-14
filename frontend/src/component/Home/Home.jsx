@@ -14,6 +14,8 @@ const socket = io("https://your-backend-service.onrender.com", {
     withCredentials: true,
   });
 
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 function Home() {
     const [projects, setProjects] = useState([]);
     const [error, setError] = useState(null);
@@ -28,7 +30,7 @@ function Home() {
     // console.log(users)
     useEffect(() => {
         // Fetch projects
-        axios.get('http://localhost:8000/project/get')
+        axios.get(`${API_BASE_URL}/project/get`)
             .then((response) => setProjects(response.data.data))
             .catch((error) => setError(error.response?.data?.message || "Failed to fetch projects"));
 
