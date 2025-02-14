@@ -15,15 +15,16 @@ import ProjectStatsChart from '../StatisticsCharts/ProjectStatsChart';
 //   })
 // ;
 
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "https://myreactjsproject-backend.onrender.com";
 const socket = io(SOCKET_URL, {
     transports: ["websocket", "polling"],
     reconnection: true,
   });
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 function Home() {
+    // console.log(API_BASE_URL)
     const [projects, setProjects] = useState([]);
     const [error, setError] = useState(null);
     const [selectedDate, setSelectedDate] = useState(new Date());
