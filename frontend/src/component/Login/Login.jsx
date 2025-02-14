@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
-import { Authentication } from '../../../../backend/middleware/userAuth';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
