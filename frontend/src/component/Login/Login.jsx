@@ -24,7 +24,7 @@ function Login() {
       );
       console.log(data);
       // setname(data.data.user);/
-      // const token = localStorage.getItem('token');
+     
 
       localStorage.setItem('userId', data.data.user.id || response.data.user._id);
       localStorage.setItem('username', data.data.user.name);
