@@ -27,7 +27,7 @@ require('./connect');  // MongoDB connection
 
 const { sendDeadlineReminders } = require('./cronReminder/emailsheduler');
 const cookieParser = require('cookie-parser');
-const cors = require('cors');
+// const cors = require('cors');
 
 const port = 8000;
 const cors = require("cors");
