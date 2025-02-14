@@ -20,11 +20,11 @@ function Login() {
         email, password
       },
         { withCredentials: true },
-        // { Authentication: token }
+        { Authentication: token }
       );
       console.log(data);
       // setname(data.data.user);/
-      const token =localStorage.getItem('token');
+      const token = localStorage.getItem('token');
 
       localStorage.setItem('userId', data.data.user.id || response.data.user._id);
       localStorage.setItem('username', data.data.user.name);
