@@ -2,16 +2,16 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 function Navbar() {
   const navigate = useNavigate();
   const name = localStorage.getItem('username')
   const role = localStorage.getItem('role')
   const handellogout = async () => {
-    const data = await axios.post('http://localhost:8000/user/logout',{},{withCredentials:true});
+    const data = await axios.post(`${API_BASE_URL}/user/logout`,{},{withCredentials:true});
     localStorage.removeItem('username');
     localStorage.removeItem('role');
-    localStorage.removeItem('token');
+    localStorage.removeItem('token')
 
     navigate('/');
     window.location.reload();
