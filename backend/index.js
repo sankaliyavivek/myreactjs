@@ -33,9 +33,9 @@ const port = 8000;
 const cors = require("cors");
 
 app.use(cors({
-  origin: ["https://myreactjsproject.onrender.com"], // Frontend URL
+  origin: ["https://myreactjsproject.onrender.com"],
   methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
+  credentials: true,
 }));
 
 

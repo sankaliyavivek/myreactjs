@@ -11,28 +11,16 @@ const initializeSocket = (server) => {
       credentials: true,
     },
   });
-
-  // Initialize Socket.IO
-  // const socket = io("https://your-backend-service.onrender.com", {
-  //   transports: ["websocket", "polling"],
-  //   withCredentials: true,
-  // });
-  // io = socketIo(server, {
+  // const io = new Server(server, {
   //   cors: {
-  //     origin: 'http://localhost:5173',  // Frontend origin
-  //     methods: ['GET', 'POST'],
-  //     allowedHeaders: ['Content-Type'],
-  //     credentials: true,
-  //   },
-  // });
-
-  // const io = require("socket.io")(server, {
-  //   cors: {
-  //     origin: ["https://myreactjsproject.onrender.com"], // ✅ Allow frontend
+  //     origin: ["https://myreactjsproject.onrender.com"], // Allow your frontend URL
   //     methods: ["GET", "POST"],
-  //     credentials: true,
   //   },
   // });
+
+  
+
+
 
   console.log('Socket.IO initialized');
 
