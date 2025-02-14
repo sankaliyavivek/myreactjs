@@ -20,7 +20,7 @@ function Login() {
         email, password
       },
         { withCredentials: true },
-        { Authentication: token }
+        // { Authentication: token }
       );
       console.log(data);
       // setname(data.data.user);/
