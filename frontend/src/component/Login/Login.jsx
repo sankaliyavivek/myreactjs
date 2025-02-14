@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -10,7 +10,7 @@ function Login() {
   const navigate = useNavigate();
   const [name, setname] = useState('');
   console.log(name);
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
 
 
   const handlesubmite = async (e) => {
@@ -20,14 +20,16 @@ function Login() {
         email, password
       },
         { withCredentials: true },
-        { Authentication: token }
+        // { Authentication: token }
       );
       console.log(data);
       // setname(data.data.user);/
+      const token =localStorage.getItem('token');
 
       localStorage.setItem('userId', data.data.user.id || response.data.user._id);
       localStorage.setItem('username', data.data.user.name);
       localStorage.setItem('role', data.data.user.role);
+      localStorage.setItem('token', token);
       alert('login successfully');
       navigate('/');
 
