@@ -10,7 +10,6 @@ function Login() {
   const navigate = useNavigate();
   const [name, setname] = useState('');
   console.log(name);
-  // const token = localStorage.getItem("token");
 
 
   const handlesubmite = async (e) => {
@@ -29,7 +28,6 @@ function Login() {
       localStorage.setItem('userId', data.data.user.id || response.data.user._id);
       localStorage.setItem('username', data.data.user.name);
       localStorage.setItem('role', data.data.user.role);
-      localStorage.setItem('token', token);
       alert('login successfully');
       navigate('/');
 
