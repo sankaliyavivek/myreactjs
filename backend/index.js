@@ -4,10 +4,21 @@ const { initializeSocket } = require('./socket');
 const app = express();
 const sendSlackNotification = require("./utils/slackService");
 const punycode = require("punycode/")
-
 sendSlackNotification("🚀 Backend is running! This is a test message.");
 
-
+// Backend installation
+// npm i bcrypt
+// npm i cookie-parser
+// npm i cors
+// npm i express
+// npm i jsonwebtoken
+// npm i mongoose
+// npm i nodemailer
+// npm i node-cron
+// npm i sokect.io
+// npm i dotenv
+// npm i googleapis
+// npm i moment
 
 app.use((req, res, next) => {
   res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
@@ -23,7 +34,7 @@ app.use((req, res, next) => {
 const httpServer = http.createServer(app);
 initializeSocket(httpServer); // Initialize socket server
 
-require('./connect');  // MongoDB connection
+require('./connect');  // MongoDB connection mate aa use thy
 
 const { sendDeadlineReminders } = require('./cronReminder/emailsheduler');
 const cookieParser = require('cookie-parser');

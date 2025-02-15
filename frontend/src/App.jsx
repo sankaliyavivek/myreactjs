@@ -19,6 +19,25 @@ import GoogleButton from './component/googleauthbutton/GoogleButton'
 import GoogleTaskForm from './component/TaskForm/GoogleTaskForm'
 
 
+// frontend installation
+// npm install react-router-dom
+// npm install react-bootstrap bootstrap
+// npm install react-icons
+// npm i axios 
+// npm i react-chart 
+// npm i react-gannt-task-react 
+// npm i react-beautiful-dnd
+// npm i react-calender
+// npm i react-chartjs2
+// npm i react-gantt
+// npm react-table
+// npm i smart-webcomponents smart-webcomponents-react 
+// npm i socket.io-client
+
+
+
+
+
 function App() {
 
   return (
