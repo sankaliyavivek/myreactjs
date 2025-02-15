@@ -11,7 +11,9 @@
         origin: ["http://localhost:5173", "https://myreactjsproject.onrender.com"], // ✅ Allow both localhost and deployed frontend
         methods: ["GET", "POST"],
         credentials: true,
+       
       },
+      transports: ["websocket", "polling"]
     });
 
  
