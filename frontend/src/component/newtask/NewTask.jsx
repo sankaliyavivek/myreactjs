@@ -2,6 +2,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
 function NewTask() {
   const [title, setTitle] = useState('');
@@ -26,7 +27,7 @@ function NewTask() {
     if (validateForm()) {
       try {
         const response = await axios.post(
-          'http://localhost:8000/task/taskcreate',
+         ` ${API_BASE_URL}/task/taskcreate`,
           {
             title,
             description,

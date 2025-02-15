@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+
+
 const GoogleTaskList = () => {
     const [tasks, setTasks] = useState([]);
     const [error, setError] = useState(null);
@@ -9,7 +12,7 @@ const GoogleTaskList = () => {
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const response = await axios.get("http://localhost:8000/api/calendar-task/googletaskget", {
+                const response = await axios.get(`${API_BASE_URL}/api/calendar-task/googletaskget`, {
                     withCredentials: true,
                 });
                 setTasks(response.data.tasks);
@@ -23,7 +26,7 @@ const GoogleTaskList = () => {
 
     const deleteTask = async (taskId) => {
         try {
-            await axios.delete(`http://localhost:8000/api/calendar-task/delete/${taskId}`, {
+            await axios.delete(`${API_BASE_URL}/api/calendar-task/delete/${taskId}`, {
                 withCredentials: true,
             });
             setTasks(tasks.filter((task) => task._id !== taskId));

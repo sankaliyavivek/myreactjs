@@ -20,7 +20,7 @@ function Login() {
         email, password
       },
         { withCredentials: true },
-        // { Authentication: token }
+        { Authentication: token }
       );
       console.log(data);
       // setname(data.data.user);/
@@ -29,7 +29,7 @@ function Login() {
       localStorage.setItem('userId', data.data.user.id || response.data.user._id);
       localStorage.setItem('username', data.data.user.name);
       localStorage.setItem('role', data.data.user.role);
-      localStorage.setItem("token", data.data.data.token);
+      localStorage.setItem('token', token);
       alert('login successfully');
       navigate('/');
 

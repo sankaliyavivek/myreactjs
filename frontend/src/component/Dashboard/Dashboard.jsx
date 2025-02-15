@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
 const Dashboard = () => {
   const [users, setUsers] = useState([]);
@@ -10,7 +11,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/user/users', { withCredentials: true });
+        const response = await axios.get(`${API_BASE_URL}/user/users`, { withCredentials: true });
         if (userRole === 'admin') {
           setUsers(response.data); // Admin gets all users
         } else {
@@ -27,7 +28,7 @@ const Dashboard = () => {
   const deleteHandler = async (id) => {
     // console.log(id)
     try {
-      await axios.delete(`http://localhost:8000/user/deleteuser/${id}`, { withCredentials: true })
+      await axios.delete(`${API_BASE_URL}/user/deleteuser/${id}`, { withCredentials: true })
       setUsers(users.filter(user => user._id !== id))
       console.log(users)
     } catch (error) {

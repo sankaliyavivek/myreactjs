@@ -2,6 +2,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
 function NewProjectForm() {
     const [title, setTitle] = useState('');
@@ -34,7 +35,7 @@ function NewProjectForm() {
         e.preventDefault();
         if (validateForm()) {
             try {
-                const create = await axios.post('http://localhost:8000/project/create', {
+                const create = await axios.post(`${API_BASE_URL}/project/create` , {
                     title, description, startDate, endDate, dueDate
                 }, { withCredentials: true }
                 );

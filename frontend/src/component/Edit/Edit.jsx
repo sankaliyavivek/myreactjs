@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 function Edit() {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -13,8 +13,11 @@ function Edit() {
     const [dueDate, setDueDate] = useState('');
     const [error, setError] = useState(null);
 
+
+
+
     useEffect(() => {
-        axios.get(`http://localhost:8000/project/edit/${id}`)
+        axios.get(`${API_BASE_URL}/project/edit/${id}`)
             .then(response => {
                 setTitle(response.data.project.title);
                 setDescription(response.data.project.description);
@@ -34,7 +37,7 @@ function Edit() {
             return;
         }
         try {
-            await axios.put(`http://localhost:8000/project/update`, {
+            await axios.put(`${API_BASE_URL}/project/update`, {
                 id,
                 title,
                 description,

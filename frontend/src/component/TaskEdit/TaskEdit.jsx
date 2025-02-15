@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
 function TaskEdit() {
     const { id } = useParams();
@@ -14,7 +15,7 @@ function TaskEdit() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/task/taskedit/${id}`)
+        axios.get(`${API_BASE_URL}/task/taskedit/${id}`)
             .then(response => {
                 setTitle(response.data.data.title);
                 setDescription(response.data.data.description);
@@ -31,7 +32,7 @@ function TaskEdit() {
     const handleUpdate = async(e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:8000/task/taskupdate`,{
+            await axios.put(`${API_BASE_URL}/task/taskupdate`,{
                 id,
                 title,
                 description,

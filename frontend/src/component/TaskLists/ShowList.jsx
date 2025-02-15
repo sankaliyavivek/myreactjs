@@ -6,7 +6,12 @@ import 'smart-webcomponents-react/source/styles/smart.default.css';
 import io from 'socket.io-client';
 import TaskStatistics from '../StatisticsCharts/TaskStatsChart';
 
-const socket = io('http://localhost:8000');
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "https://myreactjsproject-backend.onrender.com";
+const socket = io(`${SOCKET_URL}`, {
+    withCredentials: true,
+    transports: ["websocket", "polling"],
+  });
 
 function ShowList() {
   const [tasks, setTasks] = useState([]);
@@ -19,14 +24,14 @@ function ShowList() {
   const [showNotificationModal, setShowNotificationModal] = useState(false);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/task/showtask')
+    axios.get(`${API_BASE_URL}/task/showtask`)
       .then(response => setTasks(response.data.data))
       .catch(error => console.error(error));
 
-    axios.get("http://localhost:8000/user/alluser")
+    axios.get(`${API_BASE_URL}/user/alluser`)
       .then(response => setUsers(response.data.allUser));
 
-    axios.get('http://localhost:8000/notification/get')
+    axios.get(`${API_BASE_URL}/notification/get`)
       .then(response => setNotifications(response.data.data))
       .catch(error => console.error("Error fetching notifications:", error));
 
@@ -53,7 +58,7 @@ function ShowList() {
     if (!selectedTaskId || selectedUsers.length === 0) return;
     try {
       const response = await axios.put(
-        `http://localhost:8000/task/assignTask/${selectedTaskId}`,
+        `${API_BASE_URL}/task/assignTask/${selectedTaskId}`,
         { userIds: selectedUsers },
         { withCredentials: true }
       );
@@ -75,7 +80,7 @@ function ShowList() {
 
   const handleRemoveAssignedUser = async (taskId, userId) => {
     try {
-      await axios.delete(`http://localhost:8000/task/unassignTask/${taskId}/${userId}`, { withCredentials: true });
+      await axios.delete(`${API_BASE_URL}/task/unassignTask/${taskId}/${userId}`, { withCredentials: true });
       setTasks(prevTasks =>
         prevTasks.map(task =>
           task._id === taskId
@@ -91,7 +96,7 @@ function ShowList() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8000/task/taskdelete/${id}`);
+      await axios.delete(`${API_BASE_URL}/task/taskdelete/${id}`);
       setTasks(tasks.filter(task => task._id !== id));
     } catch (error) {
       console.error("Error deleting task:", error);
@@ -100,7 +105,7 @@ function ShowList() {
 
   const removeNotification = async (id) => {
     try {
-      await axios.delete(`http://localhost:8000/notification/delete/${id}`);
+      await axios.delete(`${API_BASE_URL}/notification/delete/${id}`);
       setNotifications(notifications.filter(n => n._id !== id));
     } catch (error) {
       console.error('Error removing notification:', error);

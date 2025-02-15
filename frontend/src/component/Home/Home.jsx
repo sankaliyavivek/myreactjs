@@ -6,20 +6,13 @@ import 'react-calendar/dist/Calendar.css';
 import io from 'socket.io-client';
 import ProjectStatsChart from '../StatisticsCharts/ProjectStatsChart';
 
-// Connect to the socket server
-// const socket = io('http://localhost:8000'); // Backend URL
 
-// const socket = io("https://your-backend-service.onrender.com", {
-//     transports: ["websocket", "polling"],
-//     withCredentials: true,
-//   })
-// ;
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "https://myreactjsproject-backend.onrender.com";
-const socket = io(SOCKET_URL, {
+const socket = io(`${SOCKET_URL}`, {
+    withCredentials: true,
     transports: ["websocket", "polling"],
-    reconnection: true,
   });
 
 

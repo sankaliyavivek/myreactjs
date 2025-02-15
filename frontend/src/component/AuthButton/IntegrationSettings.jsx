@@ -4,6 +4,7 @@ import axios from "axios";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
 const IntegrationSettings = () => {
     const [integrationStatus, setIntegrationStatus] = useState({
@@ -21,7 +22,7 @@ const IntegrationSettings = () => {
 
     const fetchIntegrationStatus = async () => {
         try {
-            const { data } = await axios.get("http://localhost:8000/api/integration/status", {
+            const { data } = await axios.get(`${API_BASE_URL}/api/integration/status`, {
                 withCredentials: true,
             });
 
@@ -48,7 +49,7 @@ const IntegrationSettings = () => {
 
         try {
             const response = await axios.post(
-                "http://localhost:8000/api/integration/toggle",
+                `${API_BASE_URL}/api/integration/toggle`,
                 {
                     googleCalendar: integrationType === "googleCalendar" ? !integrationStatus.googleCalendar : undefined,
                     // slack: integrationType === "slack" ? !integrationStatus.slack : undefined,/
@@ -76,7 +77,7 @@ const IntegrationSettings = () => {
         setDisconnecting(true);
         try {
             const response = await axios.post(
-                "http://localhost:8000/api/integration/disconnect-google",
+                `${API_BASE_URL}/api/integration/disconnect-google`,
                 {},
                 { withCredentials: true }
             );

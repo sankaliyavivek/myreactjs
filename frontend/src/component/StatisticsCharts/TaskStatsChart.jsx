@@ -3,10 +3,14 @@ import axios from 'axios';
 import { Bar, Pie } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 import io from 'socket.io-client';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
 Chart.register(...registerables);
-
-const socket = io('http://localhost:8000');  // Connect to the Socket.IO server
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "https://myreactjsproject-backend.onrender.com";
+const socket = io(`${SOCKET_URL}`, {
+    withCredentials: true,
+    transports: ["websocket", "polling"],
+  });  // Connect to the Socket.IO server
 
 const TaskStatistics = () => {
   const [taskCompletionRate, setTaskCompletionRate] = useState(0);
@@ -19,7 +23,7 @@ const TaskStatistics = () => {
 
   // Fetch initial statistics when the component mounts
   useEffect(() => {
-    axios.get('http://localhost:8000/statisticss/task-statistics') 
+    axios.get(`${API_BASE_URL}/statisticss/task-statistics`) 
       .then(response => {
         const data = response.data;
         setTaskCompletionRate(data.taskCompletionRate);
@@ -59,15 +63,7 @@ const TaskStatistics = () => {
     }],
   };
 
-  // Chart Data for Team Productivity
-//   const teamProductivityData = {
-//     labels: Object.keys(teamProductivity),
-//     datasets: [{
-//       label: 'Tasks Completed',
-//       data: Object.values(teamProductivity),
-//       backgroundColor: ['#8E44AD', '#3498DB', '#1ABC9C'],
-//     }],
-//   };
+
 
   return (
     <div className="container mt-5">

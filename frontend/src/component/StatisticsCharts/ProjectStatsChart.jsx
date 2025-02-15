@@ -4,12 +4,13 @@ import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
 const ProjectStatsChart = () => {
     const [stats, setStats] = useState(null);
 
     useEffect(() => {
-        axios.get('http://localhost:8000/statistics/project-stats')
+        axios.get(  `${API_BASE_URL}/statistics/project-stats`)
             .then(response => setStats(response.data))
             .catch(error => console.error('Error fetching project statistics:', error));
     }, []);

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
 function UserEdit() {
     const { id } = useParams();
@@ -10,7 +11,7 @@ function UserEdit() {
     const [phone, setPhone] = useState('');
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/user/getuser/${id}`, {
+        axios.get(`${API_BASE_URL}/user/getuser/${id}`, {
             withCredentials: true,
         })
         .then(response => {
@@ -27,7 +28,7 @@ function UserEdit() {
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:8000/user/edituser/${id}`, {
+            await axios.put(`${API_BASE_URL}/user/edituser/${id}`, {
                 name: name,
                 email: email,
                 phone: phone

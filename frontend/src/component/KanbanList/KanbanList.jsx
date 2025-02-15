@@ -3,13 +3,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Link } from 'react-router-dom';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
 function KanbanList() {
     const [tasks, setTasks] = useState([]);
   const user = localStorage.getItem('username');
 
   useEffect(() => {
-    axios.get('http://localhost:8000/task/showtask')
+    axios.get(`${API_BASE_URL}/task/showtask`)
       .then(response => {
         setTasks(response.data.data);
       })
@@ -20,7 +21,7 @@ function KanbanList() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8000/task/taskdelete/${id}`);
+      await axios.delete(`${API_BASE_URL}/task/taskdelete/${id}`);
       setTasks(tasks.filter(task => task._id !== id));
     } catch (error) {
       console.error("Error deleting task:", error);
@@ -37,7 +38,7 @@ function KanbanList() {
     setTasks(updatedTasks);
 
     try {
-      await axios.put('http://localhost:8000/task/taskupdate', {
+      await axios.put(`${API_BASE_URL}/task/taskupdate`, {
         id: movedTask._id,
         title: movedTask.title,
         description: movedTask.description,

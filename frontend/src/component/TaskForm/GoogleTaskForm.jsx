@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 const GoogleTaskForm = ({ task, onTaskSaved, isGoogleConnected }) => {
     const [title, setTitle] = useState(task?.title || "");
     const [description, setDescription] = useState(task?.description || "");
@@ -15,7 +16,7 @@ const GoogleTaskForm = ({ task, onTaskSaved, isGoogleConnected }) => {
         setError(null);
         try {
             
-                await axios.post("http://localhost:8000/api/calendar-task/create", {
+                await axios.post(`${API_BASE_URL}/api/calendar-task/create`, {
                     title,
                     description,
                     dueDate,

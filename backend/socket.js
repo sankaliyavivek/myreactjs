@@ -6,20 +6,11 @@ let io;  // Declare the io instance
 const initializeSocket = (server) => {
   io = require("socket.io")(server, {
     cors: {
-      origin: ["https://myreactjsproject.onrender.com"], // ✅ Allow frontend
+      origin: ["http://localhost:5173", "https://myreactjsproject.onrender.com"], // ✅ Allow both localhost and deployed frontend
       methods: ["GET", "POST"],
       credentials: true,
     },
   });
-  // const io = new Server(server, {
-  //   cors: {
-  //     origin: ["https://myreactjsproject.onrender.com"], // Allow your frontend URL
-  //     methods: ["GET", "POST"],
-  //   },
-  // });
-
-  
-
 
 
   console.log('Socket.IO initialized');
