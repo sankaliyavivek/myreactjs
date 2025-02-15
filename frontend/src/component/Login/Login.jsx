@@ -18,7 +18,7 @@ function Login() {
       const data = await axios.post(`${API_BASE_URL}/user/login`, {
         email, password
       },
-        { withCredentials: true }
+      {withCredentials: true}
       );
       console.log(data);
       // setname(data.data.user);/

@@ -13,7 +13,7 @@ const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "https://myreactjsproject-
 const socket = io(`${SOCKET_URL}`, {
     withCredentials: true,
     transports: ["websocket", "polling"],
-  });
+});
 
 
 function Home() {
@@ -46,7 +46,7 @@ function Home() {
                 setUsers([]); // In case of an error, set users to an empty array
             });
 
-            // show notifications
+        // show notifications
         axios.get(`${API_BASE_URL}/notification/get`)
             .then(response => setNotifications(response.data.data || []))
             .catch(error => console.error("Error fetching notifications:", error));
@@ -119,7 +119,11 @@ function Home() {
             // Send request to backend to for assignuser to project
             await axios.put(`${API_BASE_URL}/user/assignuser/${selectedProjectId}`,
                 { userIds: updatedAssignedUsers },
-                { withCredentials: true }
+                {  headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                withCredentials: true }
             );
 
             // Update local state

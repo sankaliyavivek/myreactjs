@@ -33,7 +33,7 @@
             };
             const isValidPassword = await bcrypt.compare(password, user.password);
             if (!isValidPassword) {
-                res.status(400).json({ message: 'Invalid password' });
+                return res.status(400).json({ message: 'Invalid password' });
             }
 
             const token = jwt.sign(
@@ -41,23 +41,24 @@
                 'mysecretkey', // Use environment variable
                 { expiresIn: '24h' } // Token expiration time
             )
+
+            
             res.cookie("token", token, {
                 httpOnly: true,
-                secure: false, // Change to `true` when using a custom domain with HTTPS
-                sameSite: 'None', // Important for cross-origin cookies
-                maxAge: 24 * 60 * 60 * 1000
-              });
-        
+                secure: process.env.NODE_ENV === 'production', // Set to true in production
+                sameSite: 'strict', // Helps prevent CSRF attacks
+                maxAge: 24 * 60 * 60 * 1000 // 1 day expiration
+            });
+    
             res.json({
-                message: 'User login successfully',
-               token,
+                message: 'User logged in successfully',
                 user: {
                     id: user._id,
                     name: user.name,
                     role: user.role
                 }
             });
-            
+    
 
         } catch (error) {
             console.error(error);
