@@ -98,3 +98,55 @@ smart-gantt-chart .qa-team {
     .fa-calendar-days{
         color: black;
     }
+
+    /* Navbar Hover Effects */
+.hover-brand {
+    font-size: 1.4rem;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .hover-brand:hover {
+    color: #007bff;
+  }
+  
+  /* Links */
+  .hover-link {
+    position: relative;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .hover-link:hover {
+    color: #007bff;
+    text-decoration: underline;
+  }
+  
+  /* Hover effect for role and username */
+  .hover-badge {
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .hover-badge:hover {
+    opacity: 0.8;
+  }
+  
+  .hover-username {
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .hover-username:hover {
+    opacity: 0.8;
+  }
+  
+  /* Logout Button */
+  .hover-button {
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+  }
+  
+  .hover-button:hover {
+    background-color: #dc3545;
+    transform: scale(1.05);
+  }
+
+  
+  

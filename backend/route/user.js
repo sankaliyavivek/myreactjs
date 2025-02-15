@@ -20,51 +20,48 @@
         res.json({ message: 'User created successfully', user })
     });
 
-    router.post('/login', Authentication,async (req, res) => {
+    router.post('/login', async (req, res) => {
         try {
-            const { password, email } = req.body;
-            // console.log(req.body);
+            const { email, password } = req.body;
+    
             if (!email || !password) {
                 return res.status(400).json({ message: 'Please enter both email and password' });
             }
+    
             const user = await User.findOne({ email });
             if (!user) {
-                return res.status(400).json({ message: 'Email not found' });
-            };
+                return res.status(401).json({ message: 'Invalid email or password' });
+            }
+    
             const isValidPassword = await bcrypt.compare(password, user.password);
             if (!isValidPassword) {
-                return res.status(400).json({ message: 'Invalid password' });
+                return res.status(401).json({ message: 'Invalid email or password' });
             }
-
+    
             const token = jwt.sign(
                 { userId: user._id, email: user.email, role: user.role },
-                'mysecretkey', // Use environment variable
-                { expiresIn: '24h' } // Token expiration time
-            )
-
-
+                process.env.JWT_SECRET || 'mysecretkey',
+                { expiresIn: '24h' }
+            );
+    
             res.cookie("token", token, {
                 httpOnly: true,
-                secure: process.env.NODE_ENV === 'production', // Set to true in production
-                sameSite: 'strict', // Helps prevent CSRF attacks
-                maxAge: 24 * 60 * 60 * 1000 // 1 day expiration
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'strict',
+                maxAge: 24 * 60 * 60 * 1000
             });
     
             res.json({
                 message: 'User logged in successfully',
-                user: {
-                    id: user._id,
-                    name: user.name,
-                    role: user.role
-                }
+                user: { id: user._id, name: user.name, role: user.role }
             });
     
-
         } catch (error) {
-            console.error(error);
+            console.error("Login Error:", error);
             res.status(500).json({ message: 'Internal server error' });
         }
     });
+    
 
     router.post('/logout', (req, res) => {
         try {

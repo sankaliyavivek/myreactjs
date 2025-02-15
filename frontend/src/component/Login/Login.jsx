@@ -9,7 +9,6 @@ function Login() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const [name, setname] = useState('');
-  console.log(name);
 
 
   const handlesubmite = async (e) => {
@@ -21,7 +20,6 @@ function Login() {
       {withCredentials: true}
       );
       console.log(data);
-      // setname(data.data.user);/
      
 
       localStorage.setItem('userId', data.data.user.id || response.data.user._id);

@@ -128,12 +128,12 @@ function ShowList() {
       <Link to={'/newtask'} className='btn bg-success ms-1'>New Task <i className="fa-solid fa-plus"></i></Link>
         <Link to={'/kanban'} className='btn bg-info mx-2'>Kanban View Task</Link>
         <Link to={'/table'} className='btn bg-primary'>Tabular View</Link>
-        <Link to={'/googlebutton'} className='none btn bg-info'>GoogleAuthButton</Link>
+        <Link to={'/googlebutton'} className='none btn bg-info mx-2'>GoogleAuthButton</Link>
 
     
 
          {/* Notification Icon */}
-      <div className="position-fixed top-0 end-0 m-3">
+      <div className="position-fixed top-1 end-0 m-3">
         <button className="btn btn-light position-relative" onClick={() => setShowNotificationModal(!showNotificationModal)}>
           <i className="fa-solid fa-bell fa-lg"></i>
           {notifications.length > 0 && (
