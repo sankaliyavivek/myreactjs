@@ -20,7 +20,7 @@
         res.json({ message: 'User created successfully', user })
     });
 
-    router.post('/login', async (req, res) => {
+    router.post('/login', Authentication,async (req, res) => {
         try {
             const { password, email } = req.body;
             // console.log(req.body);
@@ -42,7 +42,7 @@
                 { expiresIn: '24h' } // Token expiration time
             )
 
-            
+
             res.cookie("token", token, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production', // Set to true in production
