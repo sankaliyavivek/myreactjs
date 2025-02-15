@@ -11,8 +11,9 @@ import ProjectStatsChart from '../StatisticsCharts/ProjectStatsChart';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "https://myreactjsproject-backend.onrender.com";
 const socket = io(`${SOCKET_URL}`, {
+    path: "/socket.io/",
     withCredentials: true,
-    transports: [ "polling"],
+    transports: ["websocket", "polling"],
 });
 
 
