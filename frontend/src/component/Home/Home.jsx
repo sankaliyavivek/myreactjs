@@ -120,7 +120,7 @@ function Home() {
             await axios.put(`${API_BASE_URL}/user/assignuser/${selectedProjectId}`,
                 { userIds: updatedAssignedUsers },
                 {  headers: {
-                        Authorization: `Bearer ${token}`,
+                        // Authorization: `Bearer ${token}`,
                         "Content-Type": "application/json",
                     },
                 withCredentials: true }
