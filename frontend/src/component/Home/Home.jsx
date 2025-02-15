@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import io from 'socket.io-client';
+import {io} from 'socket.io-client';
 import ProjectStatsChart from '../StatisticsCharts/ProjectStatsChart';
 
 
