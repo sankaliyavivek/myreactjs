@@ -45,7 +45,7 @@ const port = 8000;
 const cors = require("cors");
 
 app.use(cors({
-  origin: ["http://localhost:5173", "https://clientproject-vivek.netlify.app/"], // ✅ Allow frontend during development & production
+  origin: ["http://localhost:5173", "https://clientproject-vivek.netlify.app"], // ✅ Allow frontend during development & production
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,

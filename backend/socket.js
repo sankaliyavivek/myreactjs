@@ -8,7 +8,7 @@
 
     io = socketIo(server, {
       cors: {
-        origin: ["http://localhost:5173", "https://myreactjsproject.onrender.com"], // ✅ Allow both localhost and deployed frontend
+        origin: ["http://localhost:5173", "https://clientproject-vivek.netlify.app"], // ✅ Allow both localhost and deployed frontend
         methods: ["GET", "POST"],
         credentials: true,
        
