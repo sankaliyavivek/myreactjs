@@ -10,9 +10,9 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000
 const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "https://myreactjsproject-backend.onrender.com";
 const socket = io(`${SOCKET_URL}`, {
   path: "/socket.io/",
-    withCredentials: true,
-    transports: ["websocket", "polling"],
-  });
+  withCredentials: true,
+  transports: ["websocket", "polling"],
+});
 
 function ShowList() {
   const [tasks, setTasks] = useState([]);
@@ -122,107 +122,145 @@ function ShowList() {
 
   return (
     <div>
-      <h1 className="mt-4 text-center">Show Task Management Data</h1>
+      <h1 className="task-heading  mt-4 mb-5">Show Task Management Data</h1>
+
       <div className='table-responsive'>
-      {/* <div className='d-flex'> */}
-      <Link to={'/newtask'} className='btn bg-success ms-1'>New Task <i className="fa-solid fa-plus"></i></Link>
+        {/* <div className='d-flex'> */}
+        <Link to={'/newtask'} className='btn bg-success ms-1'>New Task <i className="fa-solid fa-plus"></i></Link>
         <Link to={'/kanban'} className='btn bg-info mx-2'>Kanban View Task</Link>
         <Link to={'/table'} className='btn bg-primary'>Tabular View</Link>
         <Link to={'/googlebutton'} className='none btn bg-info mx-2'>GoogleAuthButton</Link>
 
-    
 
-         {/* Notification Icon */}
-      <div className="position-fixed top-1 end-0 m-3">
-        <button className="btn btn-light position-relative" onClick={() => setShowNotificationModal(!showNotificationModal)}>
-          <i className="fa-solid fa-bell fa-lg"></i>
-          {notifications.length > 0 && (
-            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              {notifications.length}
-            </span>
-          )}
-        </button>
-      </div>
 
-      {/* Notification Modal */}
-      {showNotificationModal && (
-        <div className="position-fixed top-0 end-0 mt-5 me-3 bg-white p-3 shadow rounded" style={{ width: "300px", zIndex: 1050 }}>
-          <h5 className="text-center">Notifications</h5>
-          {notifications.length > 0 ? (
-            <ul className="list-group">
-              {notifications.map((notification) => (
-                <li key={notification._id} className="list-group-item d-flex justify-content-between align-items-center">
-                  {notification.message}
-                  <button className="btn btn-danger btn-sm" onClick={() => removeNotification(notification._id)}>X</button>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="text-center">No notifications</p>
-          )}
+        {/* Notification Icon */}
+        <div className="  no  m-3">
+          <button className="btn btn-light position-relative" onClick={() => setShowNotificationModal(!showNotificationModal)}>
+            <i className="fa-solid fa-bell fa-lg"></i>
+            {notifications.length > 0 && (
+              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {notifications.length}
+              </span>
+            )}
+          </button>
         </div>
-      )}
 
-
-        <table className="table table-hover table-responsive mt-4">
-          <thead>
-            <tr><th>ID</th><th>Title</th><th>Description</th><th>Status</th><th>Priority</th><th>Assignee</th><th>Actions</th></tr>
-          </thead>
-          <tbody>
-            {tasks.map((task) => (
-              <tr key={task._id}>
-                <td>{task._id}</td>
-                <td>{task.title}</td>
-                <td>{task.description}</td>
-                <td>{task.status}</td>
-                <td>{task.priority}</td>
-                <td>
-                  {task.assigneeId?.length > 0 ? (
-                    task.assigneeId.map((userId, index) => {
-                      const userObj = users.find(user => user._id === userId);
-                      // console.log(users)
-                      return userObj ? (
-                        <span key={index} className="d-flex align-items-center">
-                          {userObj.name}
-                          <button onClick={() => handleRemoveAssignedUser(task._id, userObj._id)}
-                            className="btn btn-danger btn-sm mx-1">X</button>
-                        </span>
-                      ) : null;
-                    })
-                  ) : <span>No users assigned</span>}
-                </td>
-                <td>
-                  {user ? (
-                    <>
-                      <Link to={`/taskedit/${task._id}`} className='bg-info btn'>Edit</Link>
-                      <button className='btn bg-danger' onClick={() => handleDelete(task._id)}>Delete</button>
-                      <button onClick={() => { setIsAssigning(true); setSelectedTaskId(task._id); setSelectedUsers([]); }} className='bg-primary btn'>Assign</button>
-                    </>
-                  ) : <td>Login to modify tasks</td>}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      {isAssigning && (
-        <div className="modal d-flex justify-content-center align-items-center mt-5 w-100">
-          <div className="modal-content p-2 w-50">
-            <span className="close btn bg-danger" onClick={() => setIsAssigning(false)}>X</span>
-            <h2 className='text-center'>Assign Users to Task</h2>
-            <select multiple value={selectedUsers} className='w-100' onChange={e => setSelectedUsers([...e.target.selectedOptions].map(option => option.value))}>
-              {users.map(user => <option key={user._id} value={user._id}>{user.name}</option>)}
-            </select>
-            <button onClick={handleAssign} className="btn btn-primary mt-2 w-50">Assign</button>
+        {/* Notification Modal */}
+        {showNotificationModal && (
+          <div className=" position-absolute  me-3 bg-white p-3 shadow rounded" style={{ width: "300px", zIndex: 1050 }}>
+            <h5 className="text-center">Notifications</h5>
+            {notifications.length > 0 ? (
+              <ul className="list-group">
+                {notifications.map((notification) => (
+                  <li key={notification._id} className="list-group-item d-flex justify-content-between align-items-center">
+                    {notification.message}
+                    <button className="btn btn-danger btn-sm" onClick={() => removeNotification(notification._id)}>X</button>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-center">No notifications</p>
+            )}
           </div>
-        </div>
-      )}
+        )}
 
-      <GanttChart dataSource={ganttData} treeSize="30%" durationUnit="day" />
-      <TaskStatistics />
+        <div className="table-container mt-4">
+          <table className="table table-hover table-striped text-center">
+            <thead className="table-dark">
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>Assignee</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tasks.map((task) => (
+                <tr key={task._id} className="align-middle">
+                  <td>{task._id}</td>
+                  <td className="fw-bold">{task.title}</td>
+                  <td>{task.description}</td>
+                  <td>
+                    <span className={`badge bg-${task.status === 'Completed' ? 'success' : task.status === 'In Progress' ? 'warning' : 'secondary'}`}>
+                      {task.status}
+                    </span>
+                  </td>
+                  <td>
+                    <span className={`badge bg-${task.priority === 'High' ? 'danger' : task.priority === 'Medium' ? 'warning' : 'success'}`}>
+                      {task.priority}
+                    </span>
+                  </td>
+                  <td>
+                    {task.assigneeId?.length > 0 ? (
+                      task.assigneeId.map((userId, index) => {
+                        const userObj = users.find(user => user._id === userId);
+                        return userObj ? (
+                          <span key={index} className="d-flex align-items-center justify-content-center">
+                            {userObj.name}
+                            <button
+                              onClick={() => handleRemoveAssignedUser(task._id, userObj._id)}
+                              className="btn btn-danger btn-sm ms-2"
+                            >
+                              X
+                            </button>
+                          </span>
+                        ) : null;
+                      })
+                    ) : (
+                      <span className="text-muted">No users assigned</span>
+                    )}
+                  </td>
+                  <td>
+                    {user ? (
+                      <div className="d-flex gap-2 justify-content-center">
+                        <Link to={`/taskedit/${task._id}`} className="btn btn-info btn-sm">Edit</Link>
+                        <button className="btn btn-danger btn-sm" onClick={() => handleDelete(task._id)}>Delete</button>
+                        <button
+                          onClick={() => { setIsAssigning(true); setSelectedTaskId(task._id); setSelectedUsers([]); }}
+                          className="btn btn-primary btn-sm"
+                        >
+                          Assign
+                        </button>
+                      </div>
+                    ) : (
+                      <span className="text-muted">Login to modify tasks</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Modal for Assigning Users */}
+        {isAssigning && (
+          <div className="modal d-flex justify-content-center align-items-center mt-5 w-100">
+            <div className="modal-content p-3 w-50">
+              <span className="close btn bg-danger" onClick={() => setIsAssigning(false)}>X</span>
+              <h2 className="text-center">Assign Users to Task</h2>
+              <select
+                multiple
+                value={selectedUsers}
+                className="form-select w-100"
+                onChange={e => setSelectedUsers([...e.target.selectedOptions].map(option => option.value))}
+              >
+                {users.map(user => <option key={user._id} value={user._id}>{user.name}</option>)}
+              </select>
+              <button onClick={handleAssign} className="btn btn-primary mt-2 w-50">Assign</button>
+            </div>
+          </div>
+        )}
+
+
+        <GanttChart dataSource={ganttData} treeSize="30%" durationUnit="day" />
+        <TaskStatistics />
+      </div>
+
     </div>
-  );
+  )
 }
 
 export default ShowList;
