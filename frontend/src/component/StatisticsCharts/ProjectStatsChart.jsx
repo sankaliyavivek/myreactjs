@@ -10,7 +10,7 @@ const ProjectStatsChart = () => {
     const [stats, setStats] = useState(null);
 
     useEffect(() => {
-        axios.get(  `${API_BASE_URL}/statistics/project-stats`)
+        axios.get(`${API_BASE_URL}/statistics/project-stats`)
             .then(response => setStats(response.data))
             .catch(error => console.error('Error fetching project statistics:', error));
     }, []);

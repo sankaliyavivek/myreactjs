@@ -134,7 +134,7 @@ function ShowList() {
 
 
         {/* Notification Icon */}
-        <div className="  no  m-3">
+        <div className="no m-3">
           <button className="btn btn-light position-relative" onClick={() => setShowNotificationModal(!showNotificationModal)}>
             <i className="fa-solid fa-bell fa-lg"></i>
             {notifications.length > 0 && (
@@ -164,76 +164,104 @@ function ShowList() {
           </div>
         )}
 
-        <div className="table-container mt-4">
-          <table className="table table-hover table-striped text-center">
-            <thead className="table-dark">
-              <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Status</th>
-                <th>Priority</th>
-                <th>Assignee</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tasks.map((task) => (
-                <tr key={task._id} className="align-middle">
-                  <td>{task._id}</td>
-                  <td className="fw-bold">{task.title}</td>
-                  <td>{task.description}</td>
-                  <td>
-                    <span className={`badge bg-${task.status === 'Completed' ? 'success' : task.status === 'In Progress' ? 'warning' : 'secondary'}`}>
-                      {task.status}
-                    </span>
-                  </td>
-                  <td>
-                    <span className={`badge bg-${task.priority === 'High' ? 'danger' : task.priority === 'Medium' ? 'warning' : 'success'}`}>
-                      {task.priority}
-                    </span>
-                  </td>
-                  <td>
-                    {task.assigneeId?.length > 0 ? (
-                      task.assigneeId.map((userId, index) => {
-                        const userObj = users.find(user => user._id === userId);
-                        return userObj ? (
-                          <span key={index} className="d-flex align-items-center justify-content-center">
-                            {userObj.name}
-                            <button
-                              onClick={() => handleRemoveAssignedUser(task._id, userObj._id)}
-                              className="btn btn-danger btn-sm ms-2"
-                            >
-                              X
-                            </button>
-                          </span>
-                        ) : null;
-                      })
-                    ) : (
-                      <span className="text-muted">No users assigned</span>
-                    )}
-                  </td>
-                  <td>
-                    {user ? (
-                      <div className="d-flex gap-2 justify-content-center">
-                        <Link to={`/taskedit/${task._id}`} className="btn btn-info btn-sm">Edit</Link>
-                        <button className="btn btn-danger btn-sm" onClick={() => handleDelete(task._id)}>Delete</button>
-                        <button
-                          onClick={() => { setIsAssigning(true); setSelectedTaskId(task._id); setSelectedUsers([]); }}
-                          className="btn btn-primary btn-sm"
-                        >
-                          Assign
-                        </button>
-                      </div>
-                    ) : (
-                      <span className="text-muted">Login to modify tasks</span>
-                    )}
-                  </td>
+        <div className="mt-4">
+          <div className="table-responsive">
+            <table className="table table-hover text-center">
+              <thead className="table-dark">
+                <tr>
+                  <th>ID</th>
+                  <th>Title</th>
+                  <th>Description</th>
+                  <th>Status</th>
+                  <th>Priority</th>
+                  <th>Assignee</th>
+                  <th>Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {tasks.map((task) => (
+                  <tr key={task._id} className="align-middle">
+                    <td>{task._id}</td>
+                    <td className="fw-bold">{task.title}</td>
+                    <td>{task.description}</td>
+                    <td>
+                      <span
+                        className={`badge bg-${task.status === "Completed"
+                            ? "success"
+                            : task.status === "In Progress"
+                              ? "warning"
+                              : "secondary"
+                          }`}
+                      >
+                        {task.status}
+                      </span>
+                    </td>
+                    <td>
+                      <span
+                        className={`badge bg-${task.priority === "High"
+                            ? "danger"
+                            : task.priority === "Medium"
+                              ? "warning"
+                              : "success"
+                          }`}
+                      >
+                        {task.priority}
+                      </span>
+                    </td>
+                    <td>
+                      {task.assigneeId?.length > 0 ? (
+                        task.assigneeId.map((userId, index) => {
+                          const userObj = users.find((user) => user._id === userId);
+                          return userObj ? (
+                            <span key={index} className="d-flex align-items-center justify-content-center">
+                              {userObj.name}
+                              <button
+                                onClick={() => handleRemoveAssignedUser(task._id, userObj._id)}
+                                className="btn btn-danger btn-sm ms-2"
+                              >
+                                X
+                              </button>
+                            </span>
+                          ) : null;
+                        })
+                      ) : (
+                        <span className="text-muted">No users assigned</span>
+                      )}
+                    </td>
+                    <td>
+                      {user ? (
+                        <div className="d-flex gap-2 justify-content-center">
+                          <Link to={`/taskedit/${task._id}`} className="btn btn-info btn-sm">
+                            Edit
+                          </Link>
+                          <button
+                            className="btn btn-danger btn-sm"
+                            onClick={() => handleDelete(task._id)}
+                          >
+                            Delete
+                          </button>
+                          <button
+                            onClick={() => {
+                              setIsAssigning(true);
+                              setSelectedTaskId(task._id);
+                              setSelectedUsers([]);
+                            }}
+                            className="btn btn-primary btn-sm"
+                          >
+                            Assign
+                          </button>
+                        </div>
+                      ) : (
+                        <span className="text-muted">Login to modify tasks</span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
+
 
         {/* Modal for Assigning Users */}
         {isAssigning && (

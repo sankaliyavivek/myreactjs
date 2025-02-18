@@ -77,10 +77,6 @@ const TaskStatistics = () => {
           <h4>Status Distribution</h4>
           <Bar data={statusDistributionData} />
         </div>
-        {/* <div className="col-md-4">
-          <h4>Team Productivity</h4>
-          <Bar data={teamProductivityData} />
-        </div> */}
       </div>
     </div>
   );

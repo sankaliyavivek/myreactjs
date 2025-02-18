@@ -35,8 +35,10 @@ function Home() {
     useEffect(() => {
         // Fetch projects
         axios.get(`${API_BASE_URL}/project/get`)
-            .then((response) => setProjects(response.data.data))
-            .catch((error) => setError(error.response?.data?.message || "Failed to fetch projects"));
+            .then((response) => setProjects(response.data.data)|| [])
+            .catch((error) => setError(error.response?.data?.message || "Failed to fetch projects")
+                //   setProjects([])
+        );
 
         // Fetch users
         axios.get(`${API_BASE_URL}/user/alluser`)
@@ -161,14 +163,15 @@ function Home() {
 
     const formatDate = (date) => new Date(date).toISOString().split('T')[0];
 
-    const projectsForSelectedDate = projects.filter(project =>
+    const projectsForSelectedDate = Array.isArray(projects) ? projects.filter(project =>
         formatDate(project.dueDate) === formatDate(selectedDate)
-    );
+    ) : [];
+    
 
     const tileClassName = ({ date, view }) => {
         if (view === 'month') {
             const dateStr = formatDate(date);
-            if (projects.some(project => formatDate(project.dueDate) === dateStr)) {
+            if (Array.isArray(projects) && projects.length > 0 && projects.some(project => formatDate(project.dueDate) === dateStr)) {
                 return 'highlight';
             }
         }
@@ -189,7 +192,7 @@ function Home() {
                 </div>
                 {error && <p className="text-danger text-center">{error}</p>}
 
-                {projects.length > 0 ? (
+                { projects && projects.length > 0 ? (
                     <div className='table-responsive'>
                         <table className="table table-hover mt-4">
                             <thead>
