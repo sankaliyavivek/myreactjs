@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import {io} from 'socket.io-client';
+import { io } from 'socket.io-client';
 import ProjectStatsChart from '../StatisticsCharts/ProjectStatsChart';
 
 
@@ -36,10 +36,10 @@ function Home() {
     useEffect(() => {
         // Fetch projects
         axios.get(`${API_BASE_URL}/project/get`)
-            .then((response) => setProjects(response.data.data)|| [])
+            .then((response) => setProjects(response.data.data) || [])
             .catch((error) => setError(error.response?.data?.message || "Failed to fetch projects")
                 //   setProjects([])
-        );
+            );
 
         // Fetch users
         axios.get(`${API_BASE_URL}/user/alluser`)
@@ -125,11 +125,13 @@ function Home() {
             // Send request to backend to for assignuser to project
             await axios.put(`${API_BASE_URL}/user/assignuser/${selectedProjectId}`,
                 { userIds: updatedAssignedUsers },
-                {  headers: {
+                {
+                    headers: {
                         // Authorization: `Bearer ${token}`,
                         "Content-Type": "application/json",
                     },
-                withCredentials: true }
+                    withCredentials: true
+                }
             );
 
             // Update local state
@@ -167,7 +169,7 @@ function Home() {
     const projectsForSelectedDate = Array.isArray(projects) ? projects.filter(project =>
         formatDate(project.dueDate) === formatDate(selectedDate)
     ) : [];
-    
+
 
 
     const tileClassName = ({ date, view }) => {
@@ -189,12 +191,43 @@ function Home() {
                         </Link>
                     </button>
                 </div>
+
+                {/* Notification Icon */}
+                <div className="no m-3">
+                    <button className="btn btn-light position-relative" onClick={() => setShowNotificationModal(!showNotificationModal)}>
+                        <i className="fa-solid fa-bell fa-lg"></i>
+                        {notifications.length > 0 && (
+                            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                {notifications.length}
+                            </span>
+                        )}
+                    </button>
+                </div>
+
+                {/* Notification Modal */}
+                {showNotificationModal && (
+                    <div className=" position-absolute  me-3 bg-white p-3 shadow rounded" style={{ width: "300px", zIndex: 1050 }}>
+                        <h5 className="text-center">Notifications</h5>
+                        {notifications.length > 0 ? (
+                            <ul className="list-group">
+                                {notifications.map((notification) => (
+                                    <li key={notification._id} className="list-group-item d-flex justify-content-between">
+                                        {notification.message}
+                                        <span className='btn bg-danger' onClick={() => removeNotification(notification._id)}>X</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p>No notifications</p>
+                        )}
+                    </div>
+                )}
                 <div className="text-center">
                     <h1>Show Project Data</h1>
                 </div>
                 {error && <p className="text-danger text-center">{error}</p>}
 
-                { projects && projects.length > 0 ? (
+                {projects && projects.length > 0 ? (
                     <div className='table-responsive'>
                         <table className="table table-hover mt-4">
                             <thead>
@@ -306,36 +339,7 @@ function Home() {
                 )}
             </div> */}
 
-               {/* Notification Icon */}
-        <div className="no m-3">
-          <button className="btn btn-light position-relative" onClick={() => setShowNotificationModal(!showNotificationModal)}>
-            <i className="fa-solid fa-bell fa-lg"></i>
-            {notifications.length > 0 && (
-              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                {notifications.length}
-              </span>
-            )}
-          </button>
-        </div>
 
-        {/* Notification Modal */}
-        {showNotificationModal && (
-          <div className=" position-absolute  me-3 bg-white p-3 shadow rounded" style={{ width: "300px", zIndex: 1050 }}>
-            <h5 className="text-center">Notifications</h5>
-            {notifications.length > 0 ? (
-                    <ul className="list-group">
-                        {notifications.map((notification) => (
-                            <li key={notification._id} className="list-group-item d-flex justify-content-between">
-                                {notification.message}
-                                <span className='btn bg-danger' onClick={() => removeNotification(notification._id)}>X</span>
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>No notifications</p>
-                )}
-          </div>
-        )}
 
             <div className="mt-5 text-center d-flex flex-column justify-content-center">
                 <h2>Project Due Date Calendar</h2>
