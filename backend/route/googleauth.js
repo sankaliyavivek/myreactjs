@@ -58,7 +58,7 @@ router.get("/google/callback", Authentication, async (req, res) => {
             sameSite: "strict",
         });
 
-        return res.redirect("https://clientproject-vivek.netlify.app/home");
+        return res.redirect("http://localhost:5173/dashboard");
     } catch (error) {
         console.error(" OAuth Token Exchange Error:", error.response?.data || error.message || error);
         return res.status(500).json({ message: "OAuth failed", error: error.message });

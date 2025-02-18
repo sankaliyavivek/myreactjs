@@ -21,15 +21,26 @@ sendSlackNotification("🚀 Backend is running! This is a test message.");
 // npm i googleapis
 // npm i moment
 
+// app.use((req, res, next) => {
+//   res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+//   res.setHeader("Cross-Origin-Embedder-Policy", "unsafe-none"); // Allows embedded content  
+//   res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173"); // ✅ Ensure the frontend is allowed
+//   res.setHeader("Access-Control-Allow-Credentials", "true");
+//   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+//   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+//   next();
+// });
+
 app.use((req, res, next) => {
-  res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
-  res.setHeader("Cross-Origin-Embedder-Policy", "unsafe-none"); // Allows embedded content  
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173"); // ✅ Ensure the frontend is allowed
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups"); // ✅ Allow popups to communicate
+  res.setHeader("Cross-Origin-Embedder-Policy", "unsafe-none");  
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173"); // ✅ Ensure frontend is allowed
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   next();
 });
+
 
 // Create HTTP server and initialize socket.io
 const httpServer = http.createServer(app);
