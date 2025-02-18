@@ -267,8 +267,11 @@ function ShowList() {
         {isAssigning && (
           <div className="modal d-flex justify-content-center align-items-center mt-5 w-100">
             <div className="modal-content p-3 w-50">
+              <div className='text-end'>
               <span className="close btn bg-danger" onClick={() => setIsAssigning(false)}>X</span>
-              <h2 className="text-center">Assign Users to Task</h2>
+
+              </div>
+              <h2 className="text-center task-heading">Assign Users to Task</h2>
               <select
                 multiple
                 value={selectedUsers}

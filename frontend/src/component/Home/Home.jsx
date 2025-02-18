@@ -303,7 +303,7 @@ function Home() {
                         <div className='text-end'>
                             <span className="close btn bg-danger " onClick={() => setIsAssigning(false)}>X</span>
                         </div>
-                        <h2 className='text-center'>Assign Users to Project</h2>
+                        <h2 className='text-center task-heading'>Assign Users to Project</h2>
                         <div className='d-flex justify-content-center'>
                             <select multiple value={selectedUsers} className='w-100' onChange={e => setSelectedUsers([...e.target.selectedOptions].map(option => option.value))}>
                                 {Array.isArray(users) && users.length > 0 ? (
