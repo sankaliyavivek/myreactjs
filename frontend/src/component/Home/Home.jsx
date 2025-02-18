@@ -348,7 +348,7 @@ function Home() {
                         <p>No projects due on this date.</p>
                     )}
 
-                    <DownloadPDF projects={projects} users={users}></DownloadPDF>
+                    {/* <DownloadPDF projects={projects} users={users}></DownloadPDF> */}
                 </div>
             </div>
             <ProjectStatsChart />
