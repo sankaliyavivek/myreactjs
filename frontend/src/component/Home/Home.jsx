@@ -223,7 +223,7 @@ function Home() {
                     </div>
                 )}
                 <div className="text-center">
-                    <h1>Show Project Data</h1>
+                    <h1 className='task-heading'>Show Project Data</h1>
                 </div>
                 {error && <p className="text-danger text-center">{error}</p>}
 
@@ -322,34 +322,19 @@ function Home() {
 
                 </div>
             )}
-            {/* Notification Section */}
-            {/* <div className="mt-5">
-                <h2>Notifications</h2>
-                {notifications.length > 0 ? (
-                    <ul className="list-group">
-                        {notifications.map((notification) => (
-                            <li key={notification._id} className="list-group-item d-flex justify-content-between">
-                                {notification.message}
-                                <span className='btn bg-danger' onClick={() => removeNotification(notification._id)}>X</span>
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>No notifications</p>
-                )}
-            </div> */}
+          
 
 
 
             <div className="mt-5 text-center d-flex flex-column justify-content-center">
-                <h2>Project Due Date Calendar</h2>
+                <h2 className='task-heading'>Project Due Date Calendar</h2>
                 <Calendar
                     onChange={setSelectedDate}
                     value={selectedDate}
                     tileClassName={tileClassName}
                 />
                 <div className="mt-3">
-                    <h4>Projects Due on {selectedDate.toDateString()}:</h4>
+                    <h4 className='task-heading'>Projects Due on {selectedDate.toDateString()}:</h4>
                     {projectsForSelectedDate.length > 0 ? (
                         <ul className="list-group">
                             {projectsForSelectedDate.map(project => (

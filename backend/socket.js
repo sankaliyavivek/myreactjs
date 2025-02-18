@@ -25,42 +25,35 @@
       // Listen for task updates
       socket.on('updateTask', (taskData) => {
         io.emit('taskUpdated', taskData);
-        console.log(taskData)  // Emit the task update to all connected clients
       });
 
       // Listen for project updates
       socket.on('updateProject', (projectData) => {
         io.emit('projectUpdated', projectData);
-        console.log(projectData)  // Emit the project update to all connected clients
       });
 
       // Listen for task statistics updates (e.g., after task completion)
       socket.on('updateTaskStatistics', (statisticsData) => {
         io.emit('taskStatisticsUpdated', statisticsData);
-        console.log('Task statistics updated:', statisticsData);  // Emit task statistics updates to all connected clients
       });
 
       // Listen for user assignments
       socket.on('assignUser', (assignmentData) => {
         io.emit('userAssigned', assignmentData);
-        console.log('User assigned:', assignmentData);
       });
 
       // Listen for user removals
       socket.on('removeUser', (removalData) => {
         io.emit('userRemoved', removalData);
-        console.log('User removed:', removalData);
       });
 
       socket.on('taskAssigned', (assignmentData) => {
         io.emit('taskAssigned', assignmentData);  // Emit task assignment data to all clients
-        console.log('Task Assigned:', assignmentData);  // Log assignment data
       });
 
       // Listen for user removals (added for Socket.IO event)
       socket.on('taskUnassigned', (unassignmentData) => {
         io.emit('taskUnassigned', unassignmentData);  // Emit task unassignment data to all clients
-        console.log('Task Unassigned:', unassignmentData);  // Log unassignment data
       });
 
       socket.on('disconnect', () => {

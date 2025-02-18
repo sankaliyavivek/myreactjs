@@ -28,7 +28,7 @@ const ProjectStatsChart = () => {
 
     return (
         <div>
-            <h2>Project Statistics</h2>
+            <h2 className='task-heading'>Project Statistics</h2>
             <Bar data={data} />
         </div>
     );

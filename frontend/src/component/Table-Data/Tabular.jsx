@@ -92,7 +92,7 @@ const TaskTable = () => {
   return (
     <div>
       {/* Filter by Status */}
-      <div>
+      <div className='mt-3'>
         <label htmlFor="status-filter">Filter by Status:</label>
         <input
           id="status-filter"

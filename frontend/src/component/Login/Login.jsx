@@ -37,7 +37,7 @@ function Login() {
       {/* <Home name={name}/> */}
       <div className=' d-flex justify-content-center'>
         <form className='w-25' onSubmit={handlesubmite}>
-          <h3>login </h3>
+          <h3 className='task-heading'>login </h3>
           <div className="mb-3">
 
             <input

@@ -45,7 +45,7 @@ function UserEdit() {
     return (
         <div className='mt-5'>
             <div className='d-flex flex-column justify-content-center align-items-center'>
-                <h2>User Edit</h2>
+                <h2 className='task-heading'>User Edit</h2>
                 <form className='w-25' onSubmit={handleUpdate}>
                     {/* Name Input */}
                     <div className="mb-3">

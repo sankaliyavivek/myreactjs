@@ -52,7 +52,7 @@ function TaskEdit() {
 
             <div className="container">
                 <div className="text-center mb-4">
-                    <h1>Update Task Management Project</h1>
+                    <h1 className='task-heading'>Update Task Management Project</h1>
                 </div>
 
                 <div className="d-flex justify-content-center">

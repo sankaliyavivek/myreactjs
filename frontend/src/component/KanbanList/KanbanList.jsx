@@ -54,7 +54,7 @@ function KanbanList() {
   return (
     <div>
          <div className="container mt-4">
-     <h1 className="text-center">Kanban Board</h1>
+     <h1 className="text-center task-heading">Kanban Board</h1>
        <DragDropContext onDragEnd={handleDragEnd}>
        <div className="row">
           {columns.map((status) => (

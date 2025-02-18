@@ -137,7 +137,7 @@ const Dashboard = () => {
     <div className="container mt-4">
       {userRole === 'admin' ? (
         <div className="card shadow-lg p-3">
-          <h2 className="text-center mb-4">User Management</h2>
+          <h2 className="text-center mb-4 task-heading">User Management</h2>
 
          <div className=' table-responsive '>
          <table className="table table-hover text-center">

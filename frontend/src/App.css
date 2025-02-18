@@ -156,8 +156,7 @@ smart-gantt-chart .qa-team {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
     padding: 10px 0;
     text-align: center;
-    /* border-bottom: 3px solid #3498db; Blue underline */
-    /* display: inline-block; Keeps underline size to text width */
+
   }
   
   
@@ -208,10 +207,7 @@ smart-gantt-chart .qa-team {
     top: 10px !important;
   }
 
-  /* .container {
-    max-width: 900px;
-  } */
-  
+
   .card {
     border-radius: 10px;
     background: #f8f9fa;

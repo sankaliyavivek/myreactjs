@@ -35,7 +35,7 @@ function Register() {
 
   return (
     <div className='d-flex flex-column justify-content-center align-items-center '>
-      <h2 className='my-4'>Registration</h2>
+      <h2 className='my-4 task-heading'>Registration</h2>
 
       {/* Display error message if registration fails */}
       {error && <p className="text-danger text-center">{error}</p>}
@@ -111,7 +111,6 @@ export default Register;
 
 
 
-// import { createRoot } from 'react-dom/client';
 // // import './index.css';  
 // import * as React from 'react';
 // import { GanttComponent, DayMarkers, Inject, Edit, Selection, Toolbar, ColumnsDirective, ColumnDirective, EventMarkersDirective, EventMarkerDirective, HolidaysDirective, HolidayDirective, ColumnMenu, Filter, Sort, Resize, ExcelExport, PdfExport } from '@syncfusion/ej2-react-gantt';

@@ -50,7 +50,7 @@ function NewTask() {
   return (
     <div className="container">
       <div className="text-center mb-4">
-        <h1>Create New Task</h1>
+        <h1 className='task-heading'>Create New Task</h1>
       </div>
 
       <div className="d-flex justify-content-center">

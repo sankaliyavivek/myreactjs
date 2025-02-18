@@ -67,7 +67,7 @@ const TaskStatistics = () => {
 
   return (
     <div className="container mt-5">
-      <h2 className="text-center">Task Statistics</h2>
+      <h2 className="text-center task-heading">Task Statistics</h2>
       <div className="row">
         <div className="col-md-4">
           <h4>Task Completion Rate</h4>
