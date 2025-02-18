@@ -29,6 +29,7 @@ function Home() {
     const [selectedUsers, setSelectedUsers] = useState([]);
     const [isAssigning, setIsAssigning] = useState(false); // Toggle modal
     const [selectedProjectId, setSelectedProjectId] = useState(null);
+    const [showNotificationModal, setShowNotificationModal] = useState(false);
     const user = localStorage.getItem('username');
     const userRole = localStorage.getItem('role');
     // console.log(users)
@@ -168,6 +169,7 @@ function Home() {
     ) : [];
     
 
+
     const tileClassName = ({ date, view }) => {
         if (view === 'month') {
             const dateStr = formatDate(date);
@@ -288,7 +290,7 @@ function Home() {
                 </div>
             )}
             {/* Notification Section */}
-            <div className="mt-5">
+            {/* <div className="mt-5">
                 <h2>Notifications</h2>
                 {notifications.length > 0 ? (
                     <ul className="list-group">
@@ -302,7 +304,39 @@ function Home() {
                 ) : (
                     <p>No notifications</p>
                 )}
-            </div>
+            </div> */}
+
+               {/* Notification Icon */}
+        <div className="no m-3">
+          <button className="btn btn-light position-relative" onClick={() => setShowNotificationModal(!showNotificationModal)}>
+            <i className="fa-solid fa-bell fa-lg"></i>
+            {notifications.length > 0 && (
+              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {notifications.length}
+              </span>
+            )}
+          </button>
+        </div>
+
+        {/* Notification Modal */}
+        {showNotificationModal && (
+          <div className=" position-absolute  me-3 bg-white p-3 shadow rounded" style={{ width: "300px", zIndex: 1050 }}>
+            <h5 className="text-center">Notifications</h5>
+            {notifications.length > 0 ? (
+                    <ul className="list-group">
+                        {notifications.map((notification) => (
+                            <li key={notification._id} className="list-group-item d-flex justify-content-between">
+                                {notification.message}
+                                <span className='btn bg-danger' onClick={() => removeNotification(notification._id)}>X</span>
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>No notifications</p>
+                )}
+          </div>
+        )}
+
             <div className="mt-5 text-center d-flex flex-column justify-content-center">
                 <h2>Project Due Date Calendar</h2>
                 <Calendar
