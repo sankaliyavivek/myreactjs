@@ -5,6 +5,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { io } from 'socket.io-client';
 import ProjectStatsChart from '../StatisticsCharts/ProjectStatsChart';
+import DownloadPDF from '../DownloadPDF/DownloadPDF';
 
 
 
@@ -346,6 +347,8 @@ function Home() {
                     ) : (
                         <p>No projects due on this date.</p>
                     )}
+
+                    <DownloadPDF projects={projects} users={users}></DownloadPDF>
                 </div>
             </div>
             <ProjectStatsChart />
