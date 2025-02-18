@@ -4,6 +4,7 @@ import axios from "axios";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+// console.log(clientId)
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
 const IntegrationSettings = () => {
