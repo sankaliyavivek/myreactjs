@@ -280,8 +280,8 @@ function ShowList() {
               <button onClick={handleAssign} className="btn btn-primary mt-2 w-50">Assign</button>
             </div>
           </div>
-        )}
-
+        )}<br></br>
+        <br></br>
 
         <GanttChart dataSource={ganttData} treeSize="30%" durationUnit="day" />
         <TaskStatistics />

@@ -139,7 +139,8 @@ const Dashboard = () => {
         <div className="card shadow-lg p-3">
           <h2 className="text-center mb-4">User Management</h2>
 
-          <table className="table table-hover  table-responsive text-center">
+         <div className=' table-responsive '>
+         <table className="table table-hover text-center">
             <thead className="table-dark">
               <tr>
                 <th>Name</th>
@@ -174,6 +175,7 @@ const Dashboard = () => {
               )}
             </tbody>
           </table>
+         </div>
         </div>
       ) : (
         <div className="card shadow-lg p-3">
