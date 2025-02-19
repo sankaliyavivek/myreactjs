@@ -66,19 +66,20 @@
     router.post('/logout', (req, res) => {
         try {
             res.cookie("token", "", {
-                httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
-                secure: process.env.NODE_ENV === true,// Use HTTPS for secure cookies
-                sameSite: 'strict', // Protects against CSRF attacks
-                maxAge: 0, // Expire the cookie immediately
-                path: '/' // Ensure the path is the same as when it was set
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "production", // Use HTTPS only in production
+                sameSite: 'strict',
+                expires: new Date(0), // Expire immediately
+                path: '/' 
             });
-            res.json({ message: 'User logout successfully' });
+            
+            res.status(200).json({ message: 'User logged out successfully' });
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'Internal server error' });
         }
     });
-
+    
     router.get('/users', Authentication, async (req, res) => {
         try {
             const token = req.cookies.token;

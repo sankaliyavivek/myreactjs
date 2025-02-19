@@ -10,7 +10,7 @@ function Navbar() {
   const role = localStorage.getItem("role");
 
   const handleLogout = async () => {
-    await axios.post(`${API_BASE_URL}/user/logout`, {}, { withCredentials: true });
+    await axios.post(`${API_BASE_URL}/user/logout`,{}, { withCredentials: true });
 
     localStorage.removeItem("username");
     localStorage.removeItem("role");
