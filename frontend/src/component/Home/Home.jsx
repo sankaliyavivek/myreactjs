@@ -5,7 +5,6 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { io } from 'socket.io-client';
 import ProjectStatsChart from '../StatisticsCharts/ProjectStatsChart';
-import DownloadPDF from '../DownloadPDF/DownloadPDF';
 
 
 
@@ -17,6 +16,8 @@ const socket = io(`${SOCKET_URL}`, {
     path: "/socket.io/",
     withCredentials: true,
     transports: ["websocket", "polling"],
+    reconnectionAttempts: 5, 
+    reconnectionDelay: 1000 
 });
 
 
