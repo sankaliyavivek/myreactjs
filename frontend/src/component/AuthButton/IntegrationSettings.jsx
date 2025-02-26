@@ -3,7 +3,6 @@ import GoogleAuthButton from "./GoogleAuthButton";
 import axios from "axios";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Bounce, toast, ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 
 const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 // console.log(clientId)

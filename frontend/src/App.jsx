@@ -17,7 +17,6 @@ import Dashboard from './component/Dashboard/Dashboard'
 import UserEdit from './component/UserEdit/UserEdit'
 import GoogleButton from './component/googleauthbutton/GoogleButton'
 import GoogleTaskForm from './component/TaskForm/GoogleTaskForm'
-import 'react-toastify/dist/ReactToastify.css';
 
 
 // frontend installation

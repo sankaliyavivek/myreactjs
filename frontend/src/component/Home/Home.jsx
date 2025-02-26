@@ -209,20 +209,21 @@ function Home() {
     };
     return (
         <>
+            <ToastContainer
+                position="top-center"
+                autoClose={1000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+                transition={Bounce}
+            />
             <div className="mt-4">
-                <ToastContainer
-                    position="top-center"
-                    autoClose={1000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick={false}
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="dark"
-                    transition={Bounce}
-                />
+
                 <div className="">
                     <button className='btn bg-info'>
                         <Link to={'/newproject'} className='none'>
