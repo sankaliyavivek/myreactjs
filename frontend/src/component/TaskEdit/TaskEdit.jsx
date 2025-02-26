@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
+import { Bounce, toast, ToastContainer } from 'react-toastify';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
@@ -29,18 +30,29 @@ function TaskEdit() {
             });
     }, [id]);
 
-    const handleUpdate = async(e) => {
+    const handleUpdate = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`${API_BASE_URL}/task/taskupdate`,{
+            await axios.put(`${API_BASE_URL}/task/taskupdate`, {
                 id,
                 title,
                 description,
                 status,
                 priority,
-                projectId: projectId, 
+                projectId: projectId,
             });
-            alert("Task updated successfully");
+            // alert("Task updated successfully");
+            toast.success('Task updated successfully', {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+            });
             navigate('/alltask');
         } catch (error) {
             console.error("Error updating Task:", error);
@@ -111,6 +123,19 @@ function TaskEdit() {
                     </form>
                 </div>
             </div>
+            <ToastContainer
+                position="top-center"
+                autoClose={1000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+                transition={Bounce}
+            />
 
         </div>
     )

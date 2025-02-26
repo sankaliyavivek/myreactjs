@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import GoogleAuthButton from "./GoogleAuthButton";
 import axios from "axios";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 
 const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 // console.log(clientId)
@@ -35,7 +36,18 @@ const IntegrationSettings = () => {
             });
         } catch (error) {
             console.error("Error fetching integration status:", error.response?.data || error);
-            alert("Failed to fetch integration status.");
+            // alert("Failed to fetch integration status.");
+            toast.error('Failed to fetch integration status.', {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+                });
         } finally {
             setLoading(false);
         }
@@ -44,7 +56,19 @@ const IntegrationSettings = () => {
 
     const toggleIntegration = async (integrationType) => {
         if (!integrationStatus.userId) {
-            alert("User ID is missing. Cannot toggle integration.");
+            // alert("User ID is missing. Cannot toggle integration.");
+            toast.error('User ID is missing. Cannot toggle integration.', {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+                });
+            
             return;
         }
 
@@ -65,7 +89,18 @@ const IntegrationSettings = () => {
             }));
         } catch (error) {
             console.error("Error toggling integration:", error.response?.data || error);
-            alert("Failed to toggle integration.");
+            // alert("Failed to toggle integration.");
+            toast.error('Failed to toggle integration.', {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+                });
         }
     };
     const disconnectGoogle = async () => {
@@ -86,10 +121,33 @@ const IntegrationSettings = () => {
             console.log("Google Disconnected:", response.data); // Debugging log
 
             setIntegrationStatus((prevState) => ({ ...prevState, googleCalendar: false }));
-            alert("Google account disconnected!");
+            // alert("Google account disconnected!");
+            toast.success('Google account disconnected!', {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+                });
         } catch (error) {
             console.error("Error disconnecting Google:", error);
-            alert("Failed to disconnect Google account.");
+            // alert("Failed to disconnect Google account.");
+            toast.error('Failed to disconnect Google account.', {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+                });
+
         } finally {
             setDisconnecting(false);
         }
@@ -97,6 +155,19 @@ const IntegrationSettings = () => {
 
     return (
         <div className="text-center">
+             <ToastContainer
+            position="top-center"
+            autoClose={1000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={false}
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+            transition={Bounce}
+        />
             <h1>External Integrations</h1>
 
             {loading ? (

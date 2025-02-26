@@ -17,12 +17,14 @@ import Dashboard from './component/Dashboard/Dashboard'
 import UserEdit from './component/UserEdit/UserEdit'
 import GoogleButton from './component/googleauthbutton/GoogleButton'
 import GoogleTaskForm from './component/TaskForm/GoogleTaskForm'
+import 'react-toastify/dist/ReactToastify.css';
 
 
 // frontend installation
 // npm install react-router-dom
 // npm install react-bootstrap bootstrap
 // npm install react-icons
+// npm install react-toastify
 // npm i axios 
 // npm i react-chart 
 // npm i react-gannt-task-react 
