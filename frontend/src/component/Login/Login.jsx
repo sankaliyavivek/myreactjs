@@ -29,7 +29,7 @@ function Login() {
       // alert('login successfully');
       toast.success('login successfully', {
         position: "top-center",
-        autoClose: 1000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: false,
         pauseOnHover: true,
@@ -82,7 +82,7 @@ function Login() {
 
       <ToastContainer
           position="top-center"
-          autoClose={1000}
+          autoClose={2000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick={false}

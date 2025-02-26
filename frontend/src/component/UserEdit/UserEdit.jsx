@@ -54,7 +54,7 @@ function UserEdit() {
             // alert('Error updating user data');
             toast.error('Error updating user data', {
                 position: "top-center",
-                autoClose: 1000,
+                autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: false,
                 pauseOnHover: true,
@@ -114,7 +114,7 @@ function UserEdit() {
             </div>
             <ToastContainer
                 position="top-center"
-                autoClose={1000}
+                autoClose={2000}
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick={false}
