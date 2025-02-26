@@ -52,7 +52,7 @@ app.use(cors({
 }));
 
 
-sendDeadlineReminders();
+// sendDeadlineReminders();
 app.use(cookieParser());
 app.use(express.json());
  
