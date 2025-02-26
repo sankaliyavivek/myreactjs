@@ -10,7 +10,7 @@ import ProjectStatsChart from '../StatisticsCharts/ProjectStatsChart';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 // console.log(API_BASE_URL)
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "https://myreactjsproject-backend.onrender.com";
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "wss://myreactjsproject-backend.onrender.com";
 // console.log(SOCKET_URL)
 const socket = io(`${SOCKET_URL}`, {
     path: "/socket.io/",
