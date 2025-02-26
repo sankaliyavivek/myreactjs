@@ -2,6 +2,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer, Bounce } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
 const GoogleAuthButton = () => {

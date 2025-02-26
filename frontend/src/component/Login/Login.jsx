@@ -77,7 +77,10 @@ function Login() {
         </form>
 
 
-        <ToastContainer
+      </div>
+      
+
+      <ToastContainer
           position="top-center"
           autoClose={1000}
           hideProgressBar={false}
@@ -90,8 +93,6 @@ function Login() {
           theme="dark"
           transition={Bounce}
         />
-
-      </div>
     </>
   )
 }

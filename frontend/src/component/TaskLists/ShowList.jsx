@@ -6,6 +6,7 @@ import 'smart-webcomponents-react/source/styles/smart.default.css';
 import io from 'socket.io-client';
 import TaskStatistics from '../StatisticsCharts/TaskStatsChart';
 import { Bounce, toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "https://myreactjsproject-backend.onrender.com";
