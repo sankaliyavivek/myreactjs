@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
-import { Bounce, toast, ToastContainer } from 'react-toastify';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://myreactjsproject-backend.onrender.com';
 // console.log(API_BASE_URL);
@@ -18,26 +17,15 @@ function Login() {
       const data = await axios.post(`${API_BASE_URL}/user/login`, {
         email, password
       },
-        { withCredentials: true }
+      {withCredentials: true}
       );
       console.log(data);
-
+     
 
       localStorage.setItem('userId', data.data.user.id || response.data.user._id);
       localStorage.setItem('username', data.data.user.name);
       localStorage.setItem('role', data.data.user.role);
-      // alert('login successfully');
-      toast.success('login successfully', {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        transition: Bounce,
-      });
+      alert('login successfully');
       navigate('/');
 
     } catch (error) {
@@ -46,19 +34,6 @@ function Login() {
   }
   return (
     <>
-      <ToastContainer
-          position="top-center"
-          autoClose={2000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick={false}
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-          transition={Bounce}
-        />
       {/* <Home name={name}/> */}
       <div className=' d-flex justify-content-center'>
         <form className='w-25' onSubmit={handlesubmite}>
@@ -89,11 +64,7 @@ function Login() {
           </button>
         </form>
 
-
       </div>
-      
-
-    
     </>
   )
 }
