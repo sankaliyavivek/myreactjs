@@ -3,7 +3,6 @@ const http = require('http');
 const { initializeSocket } = require('./socket');
 const app = express();
 const sendSlackNotification = require("./utils/slackService");
-const punycode = require("punycode/")
 sendSlackNotification("🚀 Backend is running! This is a test message.");
 
 
@@ -53,7 +52,7 @@ app.use(cors({
 }));
 
 
-// sendDeadlineReminders();
+sendDeadlineReminders();
 app.use(cookieParser());
 app.use(express.json());
  

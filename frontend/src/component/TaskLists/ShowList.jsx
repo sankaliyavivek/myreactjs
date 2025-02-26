@@ -286,7 +286,8 @@ function ShowList() {
         )}<br></br>
         <br></br>
 
-        <GanttChart dataSource={ganttData} treeSize="30%" durationUnit="day" />
+
+        <GanttChart dataSource={ganttData}  treeSize="30%" durationUnit="day" />
         <TaskStatistics />
       </div>
 

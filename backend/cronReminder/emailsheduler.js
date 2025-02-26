@@ -1,6 +1,6 @@
 const cron = require("node-cron");
 const nodemailer = require("nodemailer");
-const Project = require("../model/project"); // Adjust path based on your structure
+const Project = require("../model/project"); // import form project schema
 
 // Configure Nodemailer Transporter
 const transporter = nodemailer.createTransport({
@@ -40,7 +40,7 @@ const sendDeadlineReminders = async () => {
 
       const mailOptions = {
         from: "sankaliyavivek9797@gmail.com",
-        to: "recipient-email@gmail.com", 
+        to: "sankaliyavivek9797@gmail.com", 
         subject: `Reminder: Project "${project.title}" is due soon!`,
         text: `The project "${project.title}" is due on ${new Date(project.dueDate).toLocaleDateString()}. Please make sure all necessary work is completed.`,
       };
