@@ -5,8 +5,6 @@ import { GanttChart } from 'smart-webcomponents-react/ganttchart';
 import 'smart-webcomponents-react/source/styles/smart.default.css';
 import io from 'socket.io-client';
 import TaskStatistics from '../StatisticsCharts/TaskStatsChart';
-import { Bounce, toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "https://myreactjsproject-backend.onrender.com";
@@ -74,32 +72,10 @@ function ShowList() {
         )
       );
       setIsAssigning(false);
-      // alert("Task assigned successfully!");
-      toast.success('Task assigned successfully!', {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        transition: Bounce,
-      });
+      alert("Task assigned successfully!");
     } catch (error) {
       console.error("Error assigning task:", error);
-      // alert(`Error: ${error.response?.data?.message || error.message}`);
-      toast.error(`Error:${error.response?.data?.message}`, {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        transition: Bounce,
-        });
+      alert(`Error: ${error.response?.data?.message || error.message}`);
     }
   };
 
@@ -211,10 +187,10 @@ function ShowList() {
                     <td>
                       <span
                         className={`badge bg-${task.status === "Completed"
-                          ? "success"
-                          : task.status === "In Progress"
-                            ? "warning"
-                            : "secondary"
+                            ? "success"
+                            : task.status === "In Progress"
+                              ? "warning"
+                              : "secondary"
                           }`}
                       >
                         {task.status}
@@ -223,10 +199,10 @@ function ShowList() {
                     <td>
                       <span
                         className={`badge bg-${task.priority === "High"
-                          ? "danger"
-                          : task.priority === "Medium"
-                            ? "warning"
-                            : "success"
+                            ? "danger"
+                            : task.priority === "Medium"
+                              ? "warning"
+                              : "success"
                           }`}
                       >
                         {task.priority}
@@ -292,7 +268,7 @@ function ShowList() {
           <div className="modal d-flex justify-content-center align-items-center mt-5 w-100">
             <div className="modal-content p-3 w-50">
               <div className='text-end'>
-                <span className="close btn bg-danger" onClick={() => setIsAssigning(false)}>X</span>
+              <span className="close btn bg-danger" onClick={() => setIsAssigning(false)}>X</span>
 
               </div>
               <h2 className="text-center task-heading">Assign Users to Task</h2>
@@ -311,22 +287,10 @@ function ShowList() {
         <br></br>
 
 
-        <GanttChart dataSource={ganttData} treeSize="30%" durationUnit="day" />
+        <GanttChart dataSource={ganttData}  treeSize="30%" durationUnit="day" />
         <TaskStatistics />
       </div>
-      <ToastContainer
-        position="top-center"
-        autoClose={1000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-        transition={Bounce}
-      />
+
     </div>
   )
 }

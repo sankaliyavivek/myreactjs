@@ -5,8 +5,6 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { io } from 'socket.io-client';
 import ProjectStatsChart from '../StatisticsCharts/ProjectStatsChart';
-import 'react-toastify/dist/ReactToastify.css';
-import { Bounce, toast, ToastContainer } from 'react-toastify';
 
 
 
@@ -18,8 +16,8 @@ const socket = io(`${SOCKET_URL}`, {
     path: "/socket.io/",
     withCredentials: true,
     transports: ["websocket", "polling"],
-    reconnectionAttempts: 5,
-    reconnectionDelay: 1000
+    reconnectionAttempts: 5, 
+    reconnectionDelay: 1000 
 });
 
 
@@ -115,18 +113,7 @@ function Home() {
         if (!selectedProjectId || selectedUsers.length === 0) return;
 
         if (userRole !== 'admin') {
-            // alert('You are not authorized to assign users to this project');
-            toast.error('You are not authorized to assign users to this project', {
-                position: "top-center",
-                autoClose: 1000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-                transition: Bounce,
-            });
+            alert('You are not authorized to assign users to this project');
             return;
         }
 
@@ -162,18 +149,7 @@ function Home() {
 
     const handleRemoveAssignedUser = async (projectId, userId) => {
         if (userRole !== 'admin') {
-            // alert('You are not authorized to remove users to this project');
-            toast.error('You are not authorized to remove users to this project', {
-                position: "top-center",
-                autoClose: 1000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-                transition: Bounce,
-            });
+            alert('You are not authorized to remove users to this project');
             return;
         }
         try {
@@ -209,21 +185,7 @@ function Home() {
     };
     return (
         <>
-            <ToastContainer
-                position="top-center"
-                autoClose={1000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick={false}
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="dark"
-                transition={Bounce}
-            />
             <div className="mt-4">
-
                 <div className="">
                     <button className='btn bg-info'>
                         <Link to={'/newproject'} className='none'>
@@ -362,7 +324,7 @@ function Home() {
 
                 </div>
             )}
-
+          
 
 
 

@@ -2,8 +2,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Bounce, toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
 function NewTask() {
@@ -29,7 +27,7 @@ function NewTask() {
     if (validateForm()) {
       try {
         const response = await axios.post(
-          ` ${API_BASE_URL}/task/taskcreate`,
+         ` ${API_BASE_URL}/task/taskcreate`,
           {
             title,
             description,
@@ -39,20 +37,9 @@ function NewTask() {
           { withCredentials: true }
         );
 
-        // alert('Task successfully created!');
-        toast.success('Task successfully created!', {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          transition: Bounce,
-        });
+        alert('Task successfully created!');
         console.log(response.data);
-        navigate('/alltask')
+       navigate('/alltask')
       } catch (error) {
         console.error(error);
         setBackendError(error.response?.data?.message || 'An error occurred.');
@@ -131,19 +118,6 @@ function NewTask() {
           </button>
         </form>
       </div>
-      <ToastContainer
-        position="top-center"
-        autoClose={1000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-        transition={Bounce}
-      />
     </div>
   );
 }

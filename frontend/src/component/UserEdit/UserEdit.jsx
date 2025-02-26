@@ -1,8 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Bounce, toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
 function UserEdit() {
@@ -16,16 +14,16 @@ function UserEdit() {
         axios.get(`${API_BASE_URL}/user/getuser/${id}`, {
             withCredentials: true,
         })
-            .then(response => {
-                console.log(response.data);
-                setName(response.data.showUserData.name);
-                setEmail(response.data.showUserData.email);
-                setPhone(response.data.showUserData.phone);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }, [id]);
+        .then(response => {
+            console.log(response.data); 
+            setName(response.data.showUserData.name);
+            setEmail(response.data.showUserData.email);
+            setPhone(response.data.showUserData.phone);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }, [id]); 
 
     const handleUpdate = async (e) => {
         e.preventDefault();
@@ -36,33 +34,11 @@ function UserEdit() {
                 phone: phone
             }, { withCredentials: true });
 
-            // alert('User data updated successfully');
-            toast.success('User data updated successfully', {
-                position: "top-center",
-                autoClose: 1000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-                transition: Bounce,
-            });
+            alert('User data updated successfully');
             navigate('/dashboard');
         } catch (error) {
             console.error(error);
-            // alert('Error updating user data');
-            toast.error('Error updating user data', {
-                position: "top-center",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-                transition: Bounce,
-            });
+            alert('Error updating user data');
         }
     };
 
@@ -112,19 +88,6 @@ function UserEdit() {
                     </button>
                 </form>
             </div>
-            <ToastContainer
-                position="top-center"
-                autoClose={2000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick={false}
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="dark"
-                transition={Bounce}
-            />
         </div>
     );
 }

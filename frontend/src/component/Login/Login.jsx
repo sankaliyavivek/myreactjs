@@ -46,6 +46,19 @@ function Login() {
   }
   return (
     <>
+      <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+          transition={Bounce}
+        />
       {/* <Home name={name}/> */}
       <div className=' d-flex justify-content-center'>
         <form className='w-25' onSubmit={handlesubmite}>
@@ -80,19 +93,7 @@ function Login() {
       </div>
       
 
-      <ToastContainer
-          position="top-center"
-          autoClose={2000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick={false}
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-          transition={Bounce}
-        />
+    
     </>
   )
 }

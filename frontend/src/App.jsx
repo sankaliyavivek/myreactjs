@@ -23,7 +23,6 @@ import GoogleTaskForm from './component/TaskForm/GoogleTaskForm'
 // npm install react-router-dom
 // npm install react-bootstrap bootstrap
 // npm install react-icons
-// npm install react-toastify
 // npm i axios 
 // npm i react-chart 
 // npm i react-gannt-task-react 
