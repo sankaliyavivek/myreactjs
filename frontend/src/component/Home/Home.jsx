@@ -140,7 +140,7 @@ function Home() {
             setProjects(prevProjects => prevProjects.map(project =>
                 project._id === selectedProjectId ? { ...project, assignedTeam: updatedAssignedUsers } : project
             ));
-
+            alert('User Assign successfully')
             setIsAssigning(false);
         } catch (error) {
             console.error('Error assigning users:', error);
